@@ -1,5 +1,5 @@
 # password-validator [![npm version](https://badge.fury.io/js/password-validator.svg)](https://www.npmjs.com/package/password-validator)
----
+
 ## Install
 `npm install password-validator`
 
@@ -19,7 +19,7 @@ Validations supported as of now are:
 * **letters()** - specifies password must include letters
 * **lowercase()** - specifies password must include lowercase letters
 * **uppercase()** - specifies password must include uppercase letters
-* **symbols()** - specifies password must include spaces
+* **symbols()** - specifies password must include symbols
 * **space()** - specifies password must include spaces
 * **isMin()** - specifies minimum length
 * **isMax()** - specifies maximum length
