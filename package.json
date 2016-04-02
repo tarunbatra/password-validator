@@ -1,0 +1,30 @@
+{
+  "name": "password-validator",
+  "version": "0.1.0",
+  "description": "Validates password according to set specifications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "password",
+    "validator",
+    "regex",
+    "check",
+    "url",
+    "match"
+  ],
+  "author": "Tarun Batra <tarun.batra00@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarunbatra/password-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tarunbatra/password-validator/issues"
+  },
+  "homepage": "https://github.com/tarunbatra/password-validator#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
