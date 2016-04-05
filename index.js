@@ -1,5 +1,3 @@
-var _ = require('underscore');
-
 /**
  * Generic method to test regex
  *
