@@ -1,7 +1,7 @@
 {
   "name": "password-validator",
-  "version": "2.0.0",
-  "description": "Validates password according to set specifications",
+  "version": "2.0.1",
+  "description": "Validates password according to flexible and intuitive specifications",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/*.js",
