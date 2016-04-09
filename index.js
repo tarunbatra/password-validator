@@ -1,6 +1,13 @@
 var _ = require('underscore');
 var internals = require('./internals');
 
+/**
+ * Registers the properties of a password-validation schema object
+ *
+ * @params: {string} func - Property name
+ * @params: {array} args - arguments for the func property
+ */
+
 var _register = function(func, args) {
     this.properties.push({ method: func, arguments: args });
   return this;
@@ -16,6 +23,8 @@ var Schema = function() {
 
 /**
  * Method to validate the password against schema
+ *
+ * @params: {string} pwd - password to valdiate
  */
 Schema.prototype.validate = function(pwd) {
   // Sets password string
