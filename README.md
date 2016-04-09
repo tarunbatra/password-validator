@@ -26,7 +26,7 @@ Validations supported as of now are:
 * **lowercase()** - specifies password must include lowercase letters
 * **uppercase()** - specifies password must include uppercase letters
 * **symbols()** - specifies password must include symbols
-* **space()** - specifies password must include spaces
+* **spaces()** - specifies password must include spaces
 * **isMin(len)** - specifies minimum length
 * **isMax(len)** - specifies maximum length
 * **not()** - inverts the result of validations applied next
