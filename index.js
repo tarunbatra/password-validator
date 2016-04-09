@@ -1,33 +1,40 @@
-/**
- * Generic method to test regex
- *
- * @params: {string} regex - regex to test
- *                           with password
- */
+var _ = require('underscore');
+var internals = require('./internals');
 
-var _process = function(regex) {
-  if (this.valid) {
-    this.valid = new RegExp(regex).test(this.password) == this.positive;
-  }
+var _register = function(func, args) {
+    this.properties.push({ method: func, arguments: args });
   return this;
 };
 
 /**
  * Constructor to create a password-validator object
- *
- * @params: {string} pwd - password to validate
  */
-var Schema = function(pwd) {
-  this.password = pwd;
-  this.valid = true;
-  this.positive = true;
+var Schema = function() {
+  this.properties = [];
   return this;
 };
 
 /**
  * Method to validate the password against schema
  */
-Schema.prototype.validate = function() {
+Schema.prototype.validate = function(pwd) {
+  // Sets password string
+  this.password = pwd;
+
+  // Sets that no inversion takes place by default
+  this.positive = true;
+
+  // A password without any validation check is valid by default
+  this.valid = true;
+
+  var self = this;
+
+  // Sets velid property after applying all validations
+  _.reduce(self.properties, function(valid, property) {
+    // Applies all validations defined in internals one by one
+    return internals[property.method].apply(self, property.arguments);
+  }, self.valid);
+
   return this.valid;
 };
 
@@ -35,19 +42,14 @@ Schema.prototype.validate = function() {
  * Method to invert the next validations
  */
 Schema.prototype.not = function() {
-  this.positive = false;
-  return this;
+  return _register.call(this, 'not', arguments);
 };
 
 /**
  * Method to invert the effects of not()
  */
-Schema.prototype.has = function(symbol) {
-  this.positive = true;
-  if(symbol) {
-    return _process.call(this, symbol);
-  }
-  return this;
+Schema.prototype.has = function() {
+  return _register.call(this, 'has', arguments);
 };
 
 /**
@@ -55,11 +57,8 @@ Schema.prototype.has = function(symbol) {
  *
  * @params: num - minimum length
  */
-Schema.prototype.isMin = function(num) {
-  if(this.valid) {
-    this.valid = this.password.length >= num;
-  }
-  return this;
+Schema.prototype.isMin = function() {
+  return _register.call(this, 'isMin', arguments);
 };
 
 /**
@@ -67,53 +66,50 @@ Schema.prototype.isMin = function(num) {
  *
  * @params: num - maximum length
  */
-Schema.prototype.isMax = function(num) {
-  if(this.valid) {
-    this.valid = this.password.length <= num;
-  }
-  return this;
+Schema.prototype.isMax = function() {
+  return _register.call(this, 'isMax', arguments);
 }
 
 /**
  * Method to validate the presense of digits
  */
 Schema.prototype.digits = function() {
-  return _process.call(this, /\d+/);
+  return _register.call(this, 'digits', arguments);
 };
 
 /**
  * Method to validate the presense of letters
  */
 Schema.prototype.letters = function() {
-  return _process.call(this, /[a-zA-Z]+/);
+ return _register.call(this, 'letters', arguments);
 };
 
 /**
  * Method to validate the presense of uppercase letters
  */
 Schema.prototype.uppercase = function() {
-  return _process.call(this, /[A-Z]+/);
+  return _register.call(this, 'uppercase', arguments);
 };
 
 /**
  * Method to validate the presense of lowercase letters
  */
 Schema.prototype.lowercase = function() {
-  return _process.call(this, /[a-z]+/);
+  return _register.call(this, 'lowercase', arguments);
 };
 
 /**
  * Method to validate the presense of symbols
  */
 Schema.prototype.symbols = function() {
-  return _process.call(this, /[`~\!@#\$%\^\&\*\(\)\-_\=\+\[\{\}\]\\\|;:'",<.>\/\?]+/);
+  return _register.call(this, 'symbols', arguments);
 };
 
 /**
  * Method to validate the presense of space
  */
-Schema.prototype.space = function() {
-  return _process.call(this, /[\s]+/);
+Schema.prototype.spaces = function() {
+return _register.call(this, 'spaces', arguments);
 };
 
 module.exports = Schema;

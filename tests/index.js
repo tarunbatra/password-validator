@@ -1,4 +1,4 @@
-var expect = require('chai').expect;
+expect = require('chai').expect;
 var Schema = require('../index');
 
 describe('password-validator',function() {
@@ -9,8 +9,9 @@ describe('password-validator',function() {
     describe('called without params', function() {
 
       beforeEach(function() {
-        schema = new Schema('qwerty');
+        schema = new Schema();
         schema.has();
+        schema.validate('');
       });
 
       it('should set positive as true', function() {
@@ -21,15 +22,16 @@ describe('password-validator',function() {
     describe('called with params', function() {
 
       beforeEach(function() {
-        schema = new Schema('qwerty');
+        schema = new Schema();
         schema.has('t{5,}');
+        schema.validate('qwerty');
       });
 
       it('should set positive as true', function() {
         expect(schema.positive).to.be.true;
       });
       it('should apply the param as regex', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       })
     });
   });
@@ -37,38 +39,41 @@ describe('password-validator',function() {
   describe('not',function() {
 
     beforeEach(function() {
-      schema = new Schema('qwerty');
+      schema = new Schema();
       schema.not();
+      schema.validate('qwerty');
     });
 
     it('should set positive as false', function() {
       expect(schema.positive).to.be.false;
     });
   });
-  
+
   describe('isMin', function() {
 
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('qwerty');
+        schema = new Schema();
         schema.isMin(10);
+        schema.validate('qwerty');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234567890');
+        schema = new Schema();
         schema.isMin(10);
+        schema.validate('1234567890');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -78,24 +83,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234567890qwerty');
+        schema = new Schema();
         schema.isMax(10);
+        schema.validate('1234567890qwerty');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234567890');
+        schema = new Schema();
         schema.isMax(10);
+        schema.validate('1234567890');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -105,24 +112,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('qwerty');
+        schema = new Schema();
         schema.digits();
+        schema.validate('qwerty');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234567890');
+        schema = new Schema();
         schema.digits();
+        schema.validate('1234567890');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -132,24 +141,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234');
+        schema = new Schema();
         schema.letters();
+        expect(schema.validate(1234));
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('letters');
+        schema = new Schema();
         schema.letters();
+        schema.validate('letters');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -159,24 +170,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234CAPS');
+        schema = new Schema();
         schema.lowercase();
+        schema.validate('1234CAPS');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('lettersCAPS');
+        schema = new Schema();
         schema.lowercase();
+        schema.validate('lettersCAPS');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -186,24 +199,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234lower');
+        schema = new Schema();
         schema.uppercase();
+        schema.validate('1234lower');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('lettersCAPS');
+        schema = new Schema();
         schema.uppercase();
+        schema.validate('lettersCAPS');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -213,24 +228,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234lower');
+        schema = new Schema();
         schema.symbols();
+        schema.validate('1234lower');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('letters&CAPS');
+        schema = new Schema();
         schema.symbols();
+        schema.validate('letters&CAPS');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
@@ -240,24 +257,26 @@ describe('password-validator',function() {
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('1234lower');
-        schema.space();
+        schema = new Schema();
+        schema.spaces();
+        schema.validate('1234lower');
       });
 
       it('should return false on validation', function() {
-        expect(schema.validate()).to.be.false;
+        expect(schema.valid).to.be.false;
       });
     });
 
     describe('the password clears the valdiation', function() {
 
       beforeEach(function() {
-        schema = new Schema('letters &CAPS');
-        schema.space();
+        schema = new Schema();
+        schema.spaces();
+        schema.validate('letters &CAPS');
       });
 
       it('should return true on validation', function() {
-        expect(schema.validate()).to.be.true;
+        expect(schema.valid).to.be.true;
       });
     });
   });
