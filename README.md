@@ -6,11 +6,17 @@
 ## Use
 
 ```
-var pwdSchema = require('password-validator');
+var passwordValidator = require('password-validator');
 
-var pwd = new pwdSchema('validPASS')
-          .isMin(8).has().uppercase().lowercase();
-console.log(pwd.validate()); // true
+// create a schema
+var schema = new passwordValidator();
+
+// add properties to it
+schema.isMin(8).has().uppercase().lowercase();
+
+// validate against a password string
+console.log(schema.validate('validPASS')); // true
+console.log(schema.validate('invalidpassword')); //false *no caps*
 ```
 
 # Validations
@@ -21,10 +27,10 @@ Validations supported as of now are:
 * **uppercase()** - specifies password must include uppercase letters
 * **symbols()** - specifies password must include symbols
 * **space()** - specifies password must include spaces
-* **isMin()** - specifies minimum length
-* **isMax()** - specifies maximum length
+* **isMin(len)** - specifies minimum length
+* **isMax(len)** - specifies maximum length
 * **not()** - inverts the result of validations applied next
-* **has()** - inverts the effect of _**not()**_
+* **has([regex])** - inverts the effect of _**not()**_ and applies a regex (optional)
 
 # License
 [MIT License](http://choosealicense.com/licenses/mit/)
