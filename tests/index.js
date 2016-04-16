@@ -1,8 +1,40 @@
 expect = require('chai').expect;
+var config = require('../config');
 var Schema = require('../index');
 
 describe('password-validator',function() {
   var schema;
+
+  describe('validate', function() {
+
+    beforeEach(function() {
+      schema = new Schema();
+    });
+
+    describe('the parameter is invalid', function() {
+
+      it('should throw error', function(done) {
+        try {
+          schema.validate();
+        } catch (err) {
+          expect(err.message).to.be.equal(config.error.password);
+          done();
+        }
+      });
+    });
+
+    describe('the parameter is valid', function() {
+
+      beforeEach(function() {
+        schema.has('p');
+      });
+
+      it('should return result of validation', function() {
+        expect(schema.validate('top')).to.be.true;
+        expect(schema.validate('tod')).to.be.false;
+      });
+    })
+  });
 
   describe('has', function() {
 
@@ -11,7 +43,7 @@ describe('password-validator',function() {
       beforeEach(function() {
         schema = new Schema();
         schema.has();
-        schema.validate('');
+        schema.validate('something');
       });
 
       it('should set positive as true', function() {
@@ -51,6 +83,22 @@ describe('password-validator',function() {
 
   describe('isMin', function() {
 
+    describe('the length is invalid', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+      });
+
+      it('should throw error', function(done) {
+        try{
+          schema.isMin();
+        } catch (err) {
+          expect(err.message).to.be.equal(config.error.length);
+          done();
+        }
+      });
+    });
+
     describe('the password fails the valdiation', function() {
 
       beforeEach(function() {
@@ -79,6 +127,22 @@ describe('password-validator',function() {
   });
 
   describe('isMax', function() {
+
+    describe('the length is invalid', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+      });
+
+      it('should throw error', function(done) {
+        try{
+          schema.isMax();
+        } catch (err) {
+          expect(err.message).to.be.equal(config.error.length);
+          done();
+        }
+      });
+    });
 
     describe('the password fails the valdiation', function() {
 
@@ -143,7 +207,7 @@ describe('password-validator',function() {
       beforeEach(function() {
         schema = new Schema();
         schema.letters();
-        expect(schema.validate(1234));
+        expect(schema.validate('1234'));
       });
 
       it('should return false on validation', function() {
