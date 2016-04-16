@@ -1,4 +1,7 @@
-# password-validator [![npm version](https://badge.fury.io/js/password-validator.svg)](https://www.npmjs.com/package/password-validator)
+
+[![npm version](https://badge.fury.io/js/password-validator.svg)](https://www.npmjs.com/package/password-validator) [![Build Status](https://travis-ci.org/tarunbatra/password-validator.svg?branch=master)](https://travis-ci.org/tarunbatra/password-validator)
+
+# password-validator
 
 ## Install
 `npm install password-validator`
