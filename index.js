@@ -1,5 +1,17 @@
 var _ = require('underscore');
 var internals = require('./internals');
+var config = require('./config');
+
+/**
+ * Validates that a number is a valid length (positive number)
+ *
+ * @params: {number} num - Number to validate
+ */
+_validateLength = function(num) {
+  if(!num || typeof num != 'number' || num < 0) {
+    throw new Error(config.error.length);
+  }
+};
 
 /**
  * Registers the properties of a password-validation schema object
@@ -27,6 +39,11 @@ var Schema = function() {
  * @params: {string} pwd - password to valdiate
  */
 Schema.prototype.validate = function(pwd) {
+  // Checks if pwd is invalid
+  if(!pwd || typeof pwd != 'string') {
+    throw new Error(config.error.password);
+  }
+
   // Sets password string
   this.password = pwd;
 
@@ -66,7 +83,8 @@ Schema.prototype.has = function() {
  *
  * @params: num - minimum length
  */
-Schema.prototype.isMin = function() {
+Schema.prototype.isMin = function(num) {
+  _validateLength(num);
   return _register.call(this, 'isMin', arguments);
 };
 
@@ -75,7 +93,8 @@ Schema.prototype.isMin = function() {
  *
  * @params: num - maximum length
  */
-Schema.prototype.isMax = function() {
+Schema.prototype.isMax = function(num) {
+  _validateLength(num);
   return _register.call(this, 'isMax', arguments);
 }
 
