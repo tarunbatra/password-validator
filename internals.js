@@ -24,6 +24,8 @@ module.exports = {
 
   /**
    * Method to invert the effects of not()
+   *
+   * @params: symbol - characters which should not be present
    */
   has: function(symbol) {
     this.positive = true;

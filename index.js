@@ -19,9 +19,9 @@ _validateLength = function(num) {
  * @params: {string} func - Property name
  * @params: {array} args - arguments for the func property
  */
-
 var _register = function(func, args) {
-    this.properties.push({ method: func, arguments: args });
+  // Add property to the schema
+  this.properties.push({ method: func, arguments: args });
   return this;
 };
 
@@ -29,6 +29,7 @@ var _register = function(func, args) {
  * Constructor to create a password-validator object
  */
 var Schema = function() {
+  // Initialize a schema with no properties defined
   this.properties = [];
   return this;
 };
@@ -55,7 +56,7 @@ Schema.prototype.validate = function(pwd) {
 
   var self = this;
 
-  // Sets velid property after applying all validations
+  // Sets valid property after applying all validations
   _.reduce(self.properties, function(valid, property) {
     // Applies all validations defined in internals one by one
     return internals[property.method].apply(self, property.arguments);
