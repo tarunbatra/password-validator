@@ -1,0 +1,8 @@
+language: node
+node:
+- "0.10"
+- "0.12"
+- "4"
+- "5"
+install: npm install
+script: npm test
