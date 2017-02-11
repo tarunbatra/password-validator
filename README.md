@@ -24,16 +24,19 @@ console.log(schema.validate('invalidpassword')); //false *no caps*
 
 # Validations
 Validations supported as of now are:
-* **digits()** - specifies password must include digits
-* **letters()** - specifies password must include letters
-* **lowercase()** - specifies password must include lowercase letters
-* **uppercase()** - specifies password must include uppercase letters
-* **symbols()** - specifies password must include symbols
-* **spaces()** - specifies password must include spaces
-* **isMin(len)** - specifies minimum length
-* **isMax(len)** - specifies maximum length
-* **not()** - inverts the result of validations applied next
-* **has([regex])** - inverts the effect of _**not()**_ and applies a regex (optional)
+
+|     Rules      |               Descriptions                                       |
+|:---------------|:-----------------------------------------------------------------|
+|**digits()**    | specifies password must include digits                           |
+|**letters()**   | specifies password must include letters                          |
+|**lowercase()** | specifies password must include lowercase letters                |
+|**uppercase()** | specifies password must include uppercase letters                |
+|**symbols()**   | specifies password must include symbols                          |
+|**spaces()**    | specifies password must include spaces                           |
+|**isMin(len)**  | specifies minimum length                                         |
+|**isMax(len)**  | specifies maximum length                                         |
+|**not()**       | inverts the result of validations applied next                   |
+|**has([regex])**| inverts the effect of _**not()**_ and applies a regex (optional) |
 
 ## API
 - [API Reference](https://tarunbatra.github.io/password-validator/PasswordSchema.html)
