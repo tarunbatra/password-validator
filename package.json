@@ -12,9 +12,10 @@
   "keywords": [
     "password",
     "validator",
-    "regex",
+    "rules",
+    "schema",
+    "validation",
     "check",
-    "url",
     "match"
   ],
   "author": "Tarun Batra <tarun.batra00@gmail.com>",
