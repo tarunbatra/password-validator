@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var lib = require('./lib');
-var config = require('./config');
+var errors = require('./errors');
 
 /**
  * Validates that a number is a valid length (positive number)
@@ -9,7 +9,7 @@ var config = require('./config');
  */
 _validateLength = function(num) {
   if(!num || typeof num != 'number' || num < 0) {
-    throw new Error(config.error.length);
+    throw new Error(errors.length);
   }
 };
 
@@ -42,7 +42,7 @@ var Schema = function() {
 Schema.prototype.validate = function(pwd) {
   // Checks if pwd is invalid
   if(!pwd || typeof pwd != 'string') {
-    throw new Error(config.error.password);
+    throw new Error(errors.password);
   }
 
   // Sets password string
