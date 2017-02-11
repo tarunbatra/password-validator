@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/*.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "docs": "node_modules/.bin/jsdoc ./*.js -t ./node_modules/docdash -R README.md -d ./docs -r"
   },
   "keywords": [
     "password",
@@ -30,6 +31,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.4.3",
     "mocha": "^2.4.5"
   }
 }
