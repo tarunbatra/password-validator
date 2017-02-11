@@ -4,9 +4,10 @@
   "description": "Validates password according to flexible and intuitive specifications",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/*.js",
-    "start": "node index.js",
-    "docs": "node_modules/.bin/jsdoc ./*.js -t ./node_modules/docdash -R README.md -d ./docs -r"
+    "docs": "node_modules/.bin/jsdoc ./*.js -t ./node_modules/docdash -R README.md -d ./docs -r",
+    "lint": "eslint ./*.js",
+    "test": "npm run lint && mocha tests/*.js",
+    "start": "node index.js"
   },
   "keywords": [
     "password",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "docdash": "^0.4.0",
+    "eslint": "^1.10.3",
     "jsdoc": "^3.4.3",
     "mocha": "^2.4.5"
   }
