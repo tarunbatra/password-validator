@@ -5,7 +5,8 @@ var errors = require('./errors');
 /**
  * Validates that a number is a valid length (positive number)
  *
- * @params: {number} num - Number to validate
+ * @private
+ * @param {number} num - Number to validate
  */
 _validateLength = function(num) {
   if(!num || typeof num != 'number' || num < 0) {
@@ -16,8 +17,9 @@ _validateLength = function(num) {
 /**
  * Registers the properties of a password-validation schema object
  *
- * @params: {string} func - Property name
- * @params: {array} args - arguments for the func property
+ * @private
+ * @param {string} func - Property name
+ * @param {array} args - arguments for the func property
  */
 var _register = function(func, args) {
   // Add property to the schema
@@ -26,7 +28,9 @@ var _register = function(func, args) {
 };
 
 /**
- * Constructor to create a password-validator object
+ * Creates a password-validator schema
+ *
+ * @constructor
  */
 var PasswordSchema = function() {
   // Initialize a schema with no properties defined
@@ -37,7 +41,9 @@ var PasswordSchema = function() {
 /**
  * Method to validate the password against schema
  *
- * @params: {string} pwd - password to valdiate
+ * @param {string} pwd - password to valdiate
+ * @return {boolean} Boolean value indicting the validity
+ *           of the password as per schema
  */
 PasswordSchema.prototype.validate = function(pwd) {
   // Checks if pwd is invalid
@@ -66,23 +72,27 @@ PasswordSchema.prototype.validate = function(pwd) {
 };
 
 /**
- * Method to invert the next validations
+ * Rule to invert the next applied rules.
+ * All the rules applied after 'not' will have opposite effect,
+ * until 'has' rule is applied
  */
 PasswordSchema.prototype.not = function() {
   return _register.call(this, 'not', arguments);
 };
 
 /**
- * Method to invert the effects of not()
+ * Rule to invert the effects of 'not'
+ * Apart from that, 'has' is also used
+ * for decoratvie purposes
  */
 PasswordSchema.prototype.has = function() {
   return _register.call(this, 'has', arguments);
 };
 
 /**
- * Method to specify a minimum length
+ * Rule to specify a minimum length of the password
  *
- * @params: num - minimum length
+ * @param {number} num - minimum length
  */
 PasswordSchema.prototype.isMin = function(num) {
   _validateLength(num);
@@ -90,9 +100,9 @@ PasswordSchema.prototype.isMin = function(num) {
 };
 
 /**
- * Method to specify a maximum length
+ * Rule to specify a maximum length of the password
  *
- * @params: num - maximum length
+ * @param {number} num - maximum length
  */
 PasswordSchema.prototype.isMax = function(num) {
   _validateLength(num);
@@ -100,42 +110,44 @@ PasswordSchema.prototype.isMax = function(num) {
 }
 
 /**
- * Method to validate the presense of digits
+ * Rule to mendate the presense of digits in the password
  */
 PasswordSchema.prototype.digits = function() {
   return _register.call(this, 'digits', arguments);
 };
 
 /**
- * Method to validate the presense of letters
+ * Rule to mendate the presense of letters in the password
  */
 PasswordSchema.prototype.letters = function() {
  return _register.call(this, 'letters', arguments);
 };
 
 /**
- * Method to validate the presense of uppercase letters
+ * Rule to mendate the presense of uppercase letters in the password
  */
 PasswordSchema.prototype.uppercase = function() {
   return _register.call(this, 'uppercase', arguments);
 };
 
 /**
- * Method to validate the presense of lowercase letters
+ * Rule to mendate the presense of lowercase letters in the password
  */
 PasswordSchema.prototype.lowercase = function() {
   return _register.call(this, 'lowercase', arguments);
 };
 
 /**
- * Method to validate the presense of symbols
+ * Rule to mendate the presense of symbols in the password
  */
 PasswordSchema.prototype.symbols = function() {
   return _register.call(this, 'symbols', arguments);
 };
 
 /**
- * Method to validate the presense of space
+ * Rule to mendate the presense of space in the password
+ * It can be used along with 'not' to not allow spaces
+ * in the password
  */
 PasswordSchema.prototype.spaces = function() {
 return _register.call(this, 'spaces', arguments);

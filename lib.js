@@ -1,7 +1,8 @@
 /**
  * Generic method to test regex
  *
- * @params: {string} regex - regex to test
+ * @private
+ * @param {string} regex - regex to test
  *                           with password
  */
 
@@ -25,7 +26,7 @@ module.exports = {
   /**
    * Method to invert the effects of not()
    *
-   * @params: symbol - characters which should not be present
+   * @param {RegExp} symbol - characters which should not be present
    */
   has: function(symbol) {
     this.positive = true;
@@ -38,7 +39,7 @@ module.exports = {
   /**
    * Method to specify a minimum length
    *
-   * @params: num - minimum length
+   * @param {number} num - minimum length
    */
   isMin: function(num) {
     if(this.valid) {
@@ -50,7 +51,7 @@ module.exports = {
   /**
    * Method to specify a maximum length
    *
-   * @params: num - maximum length
+   * @param {number} num - maximum length
    */
   isMax: function(num) {
     if(this.valid) {
