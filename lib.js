@@ -6,9 +6,9 @@
  *                           with password
  */
 
-var _process = function(regex) {
+var _process = function (regex) {
   if (this.valid) {
-    this.valid = new RegExp(regex).test(this.password) == this.positive;
+    this.valid = new RegExp(regex).test(this.password) === this.positive;
   }
   return this;
 };
@@ -18,7 +18,7 @@ module.exports = {
   /**
    * Method to invert the next validations
    */
-  not: function() {
+  not: function () {
     this.positive = false;
     return this;
   },
@@ -28,9 +28,9 @@ module.exports = {
    *
    * @param {RegExp} symbol - characters which should not be present
    */
-  has: function(symbol) {
+  has: function (symbol) {
     this.positive = true;
-    if(symbol) {
+    if (symbol) {
       return _process.call(this, symbol);
     }
     return this;
@@ -41,8 +41,8 @@ module.exports = {
    *
    * @param {number} num - minimum length
    */
-  isMin: function(num) {
-    if(this.valid) {
+  isMin: function (num) {
+    if (this.valid) {
       this.valid = this.password.length >= num;
     }
     return this;
@@ -53,8 +53,8 @@ module.exports = {
    *
    * @param {number} num - maximum length
    */
-  isMax: function(num) {
-    if(this.valid) {
+  isMax: function (num) {
+    if (this.valid) {
       this.valid = this.password.length <= num;
     }
     return this;
@@ -63,42 +63,42 @@ module.exports = {
   /**
    * Method to validate the presense of digits
    */
-  digits: function() {
+  digits: function () {
     return _process.call(this, /\d+/);
   },
 
   /**
    * Method to validate the presense of letters
    */
-  letters: function() {
+  letters: function () {
     return _process.call(this, /[a-zA-Z]+/);
   },
 
   /**
    * Method to validate the presense of uppercase letters
    */
-  uppercase: function() {
+  uppercase: function () {
     return _process.call(this, /[A-Z]+/);
   },
 
   /**
    * Method to validate the presense of lowercase letters
    */
-  lowercase: function() {
+  lowercase: function () {
     return _process.call(this, /[a-z]+/);
   },
 
   /**
    * Method to validate the presense of symbols
    */
-  symbols: function() {
+  symbols: function () {
     return _process.call(this, /[`~\!@#\$%\^\&\*\(\)\-_\=\+\[\{\}\]\\\|;:'",<.>\/\?]+/);
   },
 
   /**
    * Method to validate the presense of space
    */
-  spaces: function() {
+  spaces: function () {
     return _process.call(this, /[\s]+/);
   }
 };
