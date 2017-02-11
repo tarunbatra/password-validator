@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var internals = require('./internals');
+var lib = require('./lib');
 var config = require('./config');
 
 /**
@@ -58,8 +58,8 @@ Schema.prototype.validate = function(pwd) {
 
   // Sets valid property after applying all validations
   _.reduce(self.properties, function(valid, property) {
-    // Applies all validations defined in internals one by one
-    return internals[property.method].apply(self, property.arguments);
+    // Applies all validations defined in lib one by one
+    return lib[property.method].apply(self, property.arguments);
   }, self.valid);
 
   return this.valid;
