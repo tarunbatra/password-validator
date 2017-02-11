@@ -28,7 +28,7 @@ var _register = function(func, args) {
 /**
  * Constructor to create a password-validator object
  */
-var Schema = function() {
+var PasswordSchema = function() {
   // Initialize a schema with no properties defined
   this.properties = [];
   return this;
@@ -39,7 +39,7 @@ var Schema = function() {
  *
  * @params: {string} pwd - password to valdiate
  */
-Schema.prototype.validate = function(pwd) {
+PasswordSchema.prototype.validate = function(pwd) {
   // Checks if pwd is invalid
   if(!pwd || typeof pwd != 'string') {
     throw new Error(errors.password);
@@ -68,14 +68,14 @@ Schema.prototype.validate = function(pwd) {
 /**
  * Method to invert the next validations
  */
-Schema.prototype.not = function() {
+PasswordSchema.prototype.not = function() {
   return _register.call(this, 'not', arguments);
 };
 
 /**
  * Method to invert the effects of not()
  */
-Schema.prototype.has = function() {
+PasswordSchema.prototype.has = function() {
   return _register.call(this, 'has', arguments);
 };
 
@@ -84,7 +84,7 @@ Schema.prototype.has = function() {
  *
  * @params: num - minimum length
  */
-Schema.prototype.isMin = function(num) {
+PasswordSchema.prototype.isMin = function(num) {
   _validateLength(num);
   return _register.call(this, 'isMin', arguments);
 };
@@ -94,7 +94,7 @@ Schema.prototype.isMin = function(num) {
  *
  * @params: num - maximum length
  */
-Schema.prototype.isMax = function(num) {
+PasswordSchema.prototype.isMax = function(num) {
   _validateLength(num);
   return _register.call(this, 'isMax', arguments);
 }
@@ -102,43 +102,43 @@ Schema.prototype.isMax = function(num) {
 /**
  * Method to validate the presense of digits
  */
-Schema.prototype.digits = function() {
+PasswordSchema.prototype.digits = function() {
   return _register.call(this, 'digits', arguments);
 };
 
 /**
  * Method to validate the presense of letters
  */
-Schema.prototype.letters = function() {
+PasswordSchema.prototype.letters = function() {
  return _register.call(this, 'letters', arguments);
 };
 
 /**
  * Method to validate the presense of uppercase letters
  */
-Schema.prototype.uppercase = function() {
+PasswordSchema.prototype.uppercase = function() {
   return _register.call(this, 'uppercase', arguments);
 };
 
 /**
  * Method to validate the presense of lowercase letters
  */
-Schema.prototype.lowercase = function() {
+PasswordSchema.prototype.lowercase = function() {
   return _register.call(this, 'lowercase', arguments);
 };
 
 /**
  * Method to validate the presense of symbols
  */
-Schema.prototype.symbols = function() {
+PasswordSchema.prototype.symbols = function() {
   return _register.call(this, 'symbols', arguments);
 };
 
 /**
  * Method to validate the presense of space
  */
-Schema.prototype.spaces = function() {
+PasswordSchema.prototype.spaces = function() {
 return _register.call(this, 'spaces', arguments);
 };
 
-module.exports = Schema;
+module.exports = PasswordSchema;
