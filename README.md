@@ -35,5 +35,8 @@ Validations supported as of now are:
 * **not()** - inverts the result of validations applied next
 * **has([regex])** - inverts the effect of _**not()**_ and applies a regex (optional)
 
+## API
+- [API Reference](https://tarunbatra.github.io/password-validator/PasswordSchema.html)
+
 # License
 [MIT License](http://choosealicense.com/licenses/mit/)
