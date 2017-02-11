@@ -8,7 +8,7 @@
 
 ## Use
 
-```
+```js
 var passwordValidator = require('password-validator');
 
 // create a schema
