@@ -1,5 +1,5 @@
 expect = require('chai').expect;
-var errors = require('../errors');
+var errors = require('../errors.json');
 var Schema = require('../index');
 
 describe('password-validator',function() {

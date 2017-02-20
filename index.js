@@ -1,5 +1,5 @@
 var lib = require('./lib');
-var errors = require('./errors');
+var errors = require('./errors.json');
 
 /**
  * Validates that a number is a valid length (positive number)
