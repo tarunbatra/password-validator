@@ -1,4 +1,3 @@
-var _ = require('underscore');
 var lib = require('./lib');
 var errors = require('./errors');
 
@@ -63,7 +62,7 @@ PasswordSchema.prototype.validate = function (pwd) {
   var self = this;
 
   // Sets valid property after applying all validations
-  _.reduce(self.properties, function (valid, property) {
+  self.properties.reduce(function (valid, property) {
     // Applies all validations defined in lib one by one
     return lib[property.method].apply(self, property.arguments);
   }, self.valid);
