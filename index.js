@@ -1,5 +1,5 @@
 var lib = require('./lib');
-var errors = require('./errors');
+var config = require('./config');
 
 /**
  * Validates that a number is a valid length (positive number)
@@ -7,11 +7,11 @@ var errors = require('./errors');
  * @private
  * @param {number} num - Number to validate
  */
-var _validateLength = function (num) {
+function _validateLength(num) {
   if (!num || typeof num !== 'number' || num < 0) {
-    throw new Error(errors.length);
+    throw new Error(config.error.length);
   }
-};
+}
 
 /**
  * Registers the properties of a password-validation schema object
@@ -20,22 +20,22 @@ var _validateLength = function (num) {
  * @param {string} func - Property name
  * @param {array} args - arguments for the func property
  */
-var _register = function (func, args) {
+function _register(func, args) {
   // Add property to the schema
   this.properties.push({ method: func, arguments: args });
   return this;
-};
+}
 
 /**
  * Creates a password-validator schema
  *
  * @constructor
  */
-var PasswordSchema = function () {
+function PasswordSchema() {
   // Initialize a schema with no properties defined
   this.properties = [];
   return this;
-};
+}
 
 /**
  * Method to validate the password against schema
@@ -47,7 +47,7 @@ var PasswordSchema = function () {
 PasswordSchema.prototype.validate = function (pwd) {
   // Checks if pwd is invalid
   if (!pwd || typeof pwd !== 'string') {
-    throw new Error(errors.password);
+    throw new Error(config.error.password);
   }
 
   // Sets password string
@@ -75,7 +75,7 @@ PasswordSchema.prototype.validate = function (pwd) {
  * All the rules applied after 'not' will have opposite effect,
  * until 'has' rule is applied
  */
-PasswordSchema.prototype.not = function () {
+PasswordSchema.prototype.not = function not() {
   return _register.call(this, 'not', arguments);
 };
 
@@ -84,7 +84,7 @@ PasswordSchema.prototype.not = function () {
  * Apart from that, 'has' is also used
  * for decoratvie purposes
  */
-PasswordSchema.prototype.has = function () {
+PasswordSchema.prototype.has = function has() {
   return _register.call(this, 'has', arguments);
 };
 
@@ -111,35 +111,35 @@ PasswordSchema.prototype.isMax = function (num) {
 /**
  * Rule to mendate the presense of digits in the password
  */
-PasswordSchema.prototype.digits = function () {
+PasswordSchema.prototype.digits = function digits() {
   return _register.call(this, 'digits', arguments);
 };
 
 /**
  * Rule to mendate the presense of letters in the password
  */
-PasswordSchema.prototype.letters = function () {
+PasswordSchema.prototype.letters = function letters() {
   return _register.call(this, 'letters', arguments);
 };
 
 /**
  * Rule to mendate the presense of uppercase letters in the password
  */
-PasswordSchema.prototype.uppercase = function () {
+PasswordSchema.prototype.uppercase = function uppercase() {
   return _register.call(this, 'uppercase', arguments);
 };
 
 /**
  * Rule to mendate the presense of lowercase letters in the password
  */
-PasswordSchema.prototype.lowercase = function () {
+PasswordSchema.prototype.lowercase = function lowercase() {
   return _register.call(this, 'lowercase', arguments);
 };
 
 /**
  * Rule to mendate the presense of symbols in the password
  */
-PasswordSchema.prototype.symbols = function () {
+PasswordSchema.prototype.symbols = function symbols() {
   return _register.call(this, 'symbols', arguments);
 };
 
@@ -148,7 +148,7 @@ PasswordSchema.prototype.symbols = function () {
  * It can be used along with 'not' to not allow spaces
  * in the password
  */
-PasswordSchema.prototype.spaces = function () {
+PasswordSchema.prototype.spaces = function spaces() {
   return _register.call(this, 'spaces', arguments);
 };
 
