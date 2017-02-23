@@ -7,8 +7,8 @@ var config = require('./config');
  * @private
  * @param {number} num - Number to validate
  */
-_validateLength = function(num) {
-  if(!num || typeof num != 'number' || num < 0) {
+var _validateLength = function (num) {
+  if (!num || typeof num !== 'number' || num < 0) {
     throw new Error(config.error.length);
   }
 };
@@ -46,7 +46,7 @@ var PasswordSchema = function () {
  */
 PasswordSchema.prototype.validate = function (pwd) {
   // Checks if pwd is invalid
-  if(!pwd || typeof pwd != 'string') {
+  if (!pwd || typeof pwd !== 'string') {
     throw new Error(config.error.password);
   }
 
