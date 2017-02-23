@@ -6,19 +6,19 @@
  *                           with password
  */
 
-var _process = function (regex) {
+function _process(regex) {
   if (this.valid) {
     this.valid = new RegExp(regex).test(this.password) === this.positive;
   }
   return this;
-};
+}
 
 module.exports = {
 
   /**
    * Method to invert the next validations
    */
-  not: function () {
+  not: function not() {
     this.positive = false;
     return this;
   },
@@ -28,7 +28,7 @@ module.exports = {
    *
    * @param {RegExp} symbol - characters which should not be present
    */
-  has: function (symbol) {
+  has: function has(symbol) {
     this.positive = true;
     if (symbol) {
       return _process.call(this, symbol);
@@ -41,7 +41,7 @@ module.exports = {
    *
    * @param {number} num - minimum length
    */
-  isMin: function (num) {
+  isMin: function isMin(num) {
     if (this.valid) {
       this.valid = this.password.length >= num;
     }
@@ -53,7 +53,7 @@ module.exports = {
    *
    * @param {number} num - maximum length
    */
-  isMax: function (num) {
+  isMax: function isMax(num) {
     if (this.valid) {
       this.valid = this.password.length <= num;
     }
@@ -63,42 +63,42 @@ module.exports = {
   /**
    * Method to validate the presense of digits
    */
-  digits: function () {
+  digits: function digits() {
     return _process.call(this, /\d+/);
   },
 
   /**
    * Method to validate the presense of letters
    */
-  letters: function () {
+  letters: function letters() {
     return _process.call(this, /[a-zA-Z]+/);
   },
 
   /**
    * Method to validate the presense of uppercase letters
    */
-  uppercase: function () {
+  uppercase: function uppercase() {
     return _process.call(this, /[A-Z]+/);
   },
 
   /**
    * Method to validate the presense of lowercase letters
    */
-  lowercase: function () {
+  lowercase: function lowercase() {
     return _process.call(this, /[a-z]+/);
   },
 
   /**
    * Method to validate the presense of symbols
    */
-  symbols: function () {
+  symbols: function symbols() {
     return _process.call(this, /[`~\!@#\$%\^\&\*\(\)\-_\=\+\[\{\}\]\\\|;:'",<.>\/\?]+/);
   },
 
   /**
    * Method to validate the presense of space
    */
-  spaces: function () {
+  spaces: function spaces() {
     return _process.call(this, /[\s]+/);
   }
 };
