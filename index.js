@@ -1,5 +1,5 @@
 var lib = require('./lib');
-var errors = require('./errors.json');
+var config = require('./config');
 
 /**
  * Validates that a number is a valid length (positive number)
@@ -7,9 +7,9 @@ var errors = require('./errors.json');
  * @private
  * @param {number} num - Number to validate
  */
-var _validateLength = function (num) {
-  if (!num || typeof num !== 'number' || num < 0) {
-    throw new Error(errors.length);
+_validateLength = function(num) {
+  if(!num || typeof num != 'number' || num < 0) {
+    throw new Error(config.error.length);
   }
 };
 
@@ -46,8 +46,8 @@ var PasswordSchema = function () {
  */
 PasswordSchema.prototype.validate = function (pwd) {
   // Checks if pwd is invalid
-  if (!pwd || typeof pwd !== 'string') {
-    throw new Error(errors.password);
+  if(!pwd || typeof pwd != 'string') {
+    throw new Error(config.error.password);
   }
 
   // Sets password string
