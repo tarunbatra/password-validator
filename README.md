@@ -11,15 +11,21 @@
 ```js
 var passwordValidator = require('password-validator');
 
-// create a schema
+// Create a schema
 var schema = new passwordValidator();
 
-// add properties to it
-schema.isMin(8).has().uppercase().lowercase();
+// Add properties to it
+schema
+.isMin(8)           // Minimum length 8
+.isMax(100)         // Maximum length 100
+.has().uppercase()  // Must have uppercase letters
+.has().lowercase()  // Must have lowercase letters
+.has().digits()     // Must have digits
+.not().spaces();    // Should not have spaces
 
-// validate against a password string
-console.log(schema.validate('validPASS')); // true
-console.log(schema.validate('invalidpassword')); //false *no caps*
+// Validate against a password string
+console.log(schema.validate('validPASS123')); // true
+console.log(schema.validate('invalidPASS'));  // false *no digits*
 ```
 
 # Validations
