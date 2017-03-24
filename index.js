@@ -56,18 +56,13 @@ PasswordSchema.prototype.validate = function (pwd) {
   // Sets that no inversion takes place by default
   this.positive = true;
 
-  // A password without any validation check is valid by default
-  this.valid = true;
-
   var self = this;
 
   // Sets valid property after applying all validations
-  self.properties.reduce(function (valid, property) {
+  return this.properties.every(function (property) {
     // Applies all validations defined in lib one by one
     return lib[property.method].apply(self, property.arguments);
-  }, self.valid);
-
-  return this.valid;
+  });
 };
 
 /**

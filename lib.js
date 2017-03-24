@@ -7,10 +7,7 @@
  */
 
 function _process(regex) {
-  if (this.valid) {
-    this.valid = new RegExp(regex).test(this.password) === this.positive;
-  }
-  return this;
+  return new RegExp(regex).test(this.password) === this.positive;
 }
 
 module.exports = {
@@ -20,7 +17,7 @@ module.exports = {
    */
   not: function not() {
     this.positive = false;
-    return this;
+    return true;
   },
 
   /**
@@ -33,7 +30,7 @@ module.exports = {
     if (symbol) {
       return _process.call(this, symbol);
     }
-    return this;
+    return true;
   },
 
   /**
@@ -42,10 +39,7 @@ module.exports = {
    * @param {number} num - minimum length
    */
   isMin: function isMin(num) {
-    if (this.valid) {
-      this.valid = this.password.length >= num;
-    }
-    return this;
+    return this.password.length >= num;
   },
 
   /**
@@ -54,10 +48,7 @@ module.exports = {
    * @param {number} num - maximum length
    */
   isMax: function isMax(num) {
-    if (this.valid) {
-      this.valid = this.password.length <= num;
-    }
-    return this;
+    return this.password.length <= num;
   },
 
   /**
