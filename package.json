@@ -6,7 +6,8 @@
   "scripts": {
     "docs": "node_modules/.bin/jsdoc ./*.js -t ./node_modules/docdash -R README.md -d ./docs -r",
     "lint": "eslint ./*.js",
-    "test": "npm run lint && mocha tests/*.js",
+    "test:unit": "mocha tests/*.js",
+    "test": "npm run lint && npm run test:unit",
     "start": "node index.js"
   },
   "keywords": [
