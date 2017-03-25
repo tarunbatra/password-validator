@@ -1,6 +1,6 @@
 expect = require('chai').expect;
-var config = require('../config');
-var Schema = require('../index');
+var config = require('../src/config');
+var Schema = require('../src/index');
 
 describe('password-validator',function() {
   var schema;
