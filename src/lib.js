@@ -5,7 +5,7 @@
  * @param {string} regex - regex to test
  *                           with password
  */
-var regex = require('./config').regex;
+var regex = require('./constants').regex;
 
 function _process(regexp) {
   return new RegExp(regexp).test(this.password) === this.positive;

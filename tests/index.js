@@ -1,5 +1,5 @@
 expect = require('chai').expect;
-var config = require('../src/config');
+var error = require('../src/constants').error;
 var Schema = require('../src/index');
 
 describe('password-validator',function() {
@@ -18,7 +18,7 @@ describe('password-validator',function() {
         try {
           valid = schema.validate();
         } catch (err) {
-          expect(err.message).to.be.equal(config.error.password);
+          expect(err.message).to.be.equal(error.password);
           done();
         }
       });
@@ -111,7 +111,7 @@ describe('password-validator',function() {
         try{
           schema.isMin();
         } catch (err) {
-          expect(err.message).to.be.equal(config.error.length);
+          expect(err.message).to.be.equal(error.length);
           done();
         }
       });
@@ -156,7 +156,7 @@ describe('password-validator',function() {
         try{
           schema.isMax();
         } catch (err) {
-          expect(err.message).to.be.equal(config.error.length);
+          expect(err.message).to.be.equal(error.length);
           done();
         }
       });
