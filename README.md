@@ -1,13 +1,12 @@
 
-[![npm version](https://badge.fury.io/js/password-validator.svg)](https://www.npmjs.com/package/password-validator) [![Build Status](https://travis-ci.org/tarunbatra/password-validator.svg?branch=master)](https://travis-ci.org/tarunbatra/password-validator)
-
 # password-validator
+
+[![npm version](https://badge.fury.io/js/password-validator.svg)](https://www.npmjs.com/package/password-validator) [![Build Status](https://travis-ci.org/tarunbatra/password-validator.svg?branch=master)](https://travis-ci.org/tarunbatra/password-validator)
 
 ## Install
 `npm install password-validator`
 
 ## Use
-
 ```js
 var passwordValidator = require('password-validator');
 
@@ -24,11 +23,18 @@ schema
 .not().spaces();    // Should not have spaces
 
 // Validate against a password string
-console.log(schema.validate('validPASS123')); // true
-console.log(schema.validate('invalidPASS'));  // false *no digits*
+console.log(schema.validate('validPASS123'));
+// => true
+console.log(schema.validate('invalidPASS'));
+// => false
+
+// Get a full list of rules which failed
+console.log(schema.validate('joke', { list: true }));
+// => [ 'isMin', 'uppercase', 'digits' ]
+
 ```
 
-# Validations
+## Validations
 Validations supported as of now are:
 
 |     Rules      |               Descriptions                                       |
@@ -44,8 +50,12 @@ Validations supported as of now are:
 |**not()**       | inverts the result of validations applied next                   |
 |**has([regex])**| inverts the effect of _**not()**_ and applies a regex (optional) |
 
-## API
-- [API Reference](https://tarunbatra.github.io/password-validator/PasswordSchema.html)
+## Options
+The following options can be passed to `validate` method:
+* `list` - If set, validate method returns a list of rules which failed instead of true/false.
 
-# License
+## API
+* [API Reference](https://tarunbatra.github.io/password-validator/PasswordSchema.html)
+
+## License
 [MIT License](http://choosealicense.com/licenses/mit/)
