@@ -34,7 +34,24 @@ describe('password-validator',function() {
         expect(schema.validate('top')).to.be.true;
         expect(schema.validate('tod')).to.be.false;
       });
-    })
+    });
+
+    describe('options', function() {
+      beforeEach(function() {
+        schema.has('p').isMin(8);
+      });
+      describe('list option is set', function () {
+
+        it('should return array of validation failures', function() {
+          expect(schema.validate('topclass', { list: true }) instanceof Array).to.be.true;
+          expect(schema.validate('topclass', { list: true })[0]).to.be.undefined;
+          expect(schema.validate('todclass', { list: true }) instanceof Array).to.be.true;
+          expect(schema.validate('tod', { list: true })[0]).to.be.equal('has');
+          expect(schema.validate('tod', { list: true })[1]).to.be.equal('isMin');
+          expect(schema.validate('tod', { list: true })[2]).to.be.undefined;
+        });
+      });
+    });
   });
 
   describe('has', function() {
