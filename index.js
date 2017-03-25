@@ -14,6 +14,18 @@ function _validateLength(num) {
 }
 
 /**
+ * Tests a validation and return the result
+ *
+ * @private
+ * @param {string} property - Property to validate
+ * @return {boolean} Boolean value indicting the validity
+ *           of the password against the property
+ */
+function _isPasswordValidFor(property) {
+  return lib[property.method].apply(this, property.arguments);
+}
+
+/**
  * Registers the properties of a password-validation schema object
  *
  * @private
@@ -34,17 +46,21 @@ function _register(func, args) {
 function PasswordSchema() {
   // Initialize a schema with no properties defined
   this.properties = [];
-  return this;
 }
 
 /**
  * Method to validate the password against schema
  *
  * @param {string} pwd - password to valdiate
- * @return {boolean} Boolean value indicting the validity
- *           of the password as per schema
+ * @param {object} options - optional options to configure validation
+ * @param {boolean} [options.list] - asks for a list of validation
+ *           failures instead of just true/false
+ * @return {boolean|array} Boolean value indicting the validity
+ *           of the password as per schema, if 'options.list'
+ *           is not set. Otherwise, it returns an array of
+ *           property names which failed validations
  */
-PasswordSchema.prototype.validate = function (pwd) {
+PasswordSchema.prototype.validate = function (pwd, options) {
   // Checks if pwd is invalid
   if (!pwd || typeof pwd !== 'string') {
     throw new Error(config.error.password);
@@ -56,12 +72,24 @@ PasswordSchema.prototype.validate = function (pwd) {
   // Sets that no inversion takes place by default
   this.positive = true;
 
-  var self = this;
+  var _this = this;
 
-  // Sets valid property after applying all validations
+  if (options && options.list === true) {
+    return this.properties.reduce(function (errorList, property) {
+      // Applies all validations defined in lib one by one
+      if (!_isPasswordValidFor.call(_this, property)) {
+        // If the validation for a property fails,
+        // add it to the error list
+        return errorList.concat(property.method);
+      }
+      return errorList;
+    }, []);
+  }
+
+  // Returns the result of the validations
   return this.properties.every(function (property) {
     // Applies all validations defined in lib one by one
-    return lib[property.method].apply(self, property.arguments);
+    return _isPasswordValidFor.call(_this, property);
   });
 };
 
