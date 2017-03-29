@@ -1,12 +1,13 @@
+[![logo][logo-image]][logo-url]
 
-# password-validator
-
-[![npm version](https://badge.fury.io/js/password-validator.svg)](https://www.npmjs.com/package/password-validator) [![Build Status](https://travis-ci.org/tarunbatra/password-validator.svg?branch=master)](https://travis-ci.org/tarunbatra/password-validator)
+[![build status][travis-image]][travis-url]
+[![npm version][npm-image]][npm-url]
+[![npm downloads][downloads-image]][npm-url]
 
 ## Install
 `npm install password-validator`
 
-## Use
+## Usage
 ```js
 var passwordValidator = require('password-validator');
 
@@ -34,8 +35,8 @@ console.log(schema.validate('joke', { list: true }));
 
 ```
 
-## Validations
-Validations supported as of now are:
+## Rules
+Rules supported as of now are:
 
 |     Rules      |               Descriptions                                       |
 |:---------------|:-----------------------------------------------------------------|
@@ -54,8 +55,19 @@ Validations supported as of now are:
 The following options can be passed to `validate` method:
 * `list` - If set, validate method returns a list of rules which failed instead of true/false.
 
-## API
+## Resources
 * [API Reference](https://tarunbatra.github.io/password-validator/PasswordSchema.html)
+* [Wiki](https://github.com/tarunbatra/password-validator/wiki)
+* [Changelog](https://github.com/tarunbatra/password-validator/blob/master/CHANGELOG.md)
 
 ## License
 [MIT License](http://choosealicense.com/licenses/mit/)
+
+
+[logo-image]: http://res.cloudinary.com/tbking/image/upload/v1490803400/password-validator/logo.png
+[logo-url]: http://tarunbatra.github.io/password-validator
+[npm-image]: https://img.shields.io/npm/v/password-validator.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/password-validator
+[travis-image]:https://img.shields.io/travis/tarunbatra/password-validator.svg?style=flat-square
+[travis-url]:https://travis-ci.org/tarunbatra/password-validator
+[downloads-image]: https://img.shields.io/npm/dt/password-validator.svg?style=flat-square
