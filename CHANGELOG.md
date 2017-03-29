@@ -5,7 +5,8 @@ This project adheres to [semver](http://semver.org/).
 
 ## [2.2.0](https://github.com/tarunbatra/password-validator/releases/tag/v2.2.0)
 * Added `list` option to the validate method.
+* Code optimizations.
 
 ## [2.1.2](https://github.com/tarunbatra/password-validator/releases/tag/v2.1.2)
-* Fixed issue [#3] relating to file loading in frontend environment.
+* Fixed issue #3 relating to file loading in frontend environment.
 * Removed underscore as dependency.
