@@ -38,7 +38,7 @@ describe('password-validator',function() {
 
     describe('options', function() {
       beforeEach(function() {
-        schema.has('p').isMin(8);
+        schema.has('p').min(8);
       });
       describe('list option is set', function () {
 
@@ -47,7 +47,7 @@ describe('password-validator',function() {
           expect(schema.validate('topclass', { list: true })[0]).to.be.undefined;
           expect(schema.validate('todclass', { list: true }) instanceof Array).to.be.true;
           expect(schema.validate('tod', { list: true })[0]).to.be.equal('has');
-          expect(schema.validate('tod', { list: true })[1]).to.be.equal('isMin');
+          expect(schema.validate('tod', { list: true })[1]).to.be.equal('min');
           expect(schema.validate('tod', { list: true })[2]).to.be.undefined;
         });
       });
@@ -86,6 +86,18 @@ describe('password-validator',function() {
     });
   });
 
+  describe('is', function() {
+    beforeEach(function() {
+      schema = new Schema();
+      schema.is();
+      valid = schema.validate('something');
+    });
+
+    it('should set positive as true', function() {
+      expect(schema.positive).to.be.true;
+    });
+  });
+
   describe('not',function() {
 
     describe('called without params', function() {
@@ -118,7 +130,7 @@ describe('password-validator',function() {
     });
   });
 
-  describe('isMin', function() {
+  describe('min', function() {
 
     describe('the length is invalid', function() {
 
@@ -128,7 +140,7 @@ describe('password-validator',function() {
 
       it('should throw error', function(done) {
         try{
-          schema.isMin();
+          schema.min();
         } catch (err) {
           expect(err.message).to.be.equal(error.length);
           done();
@@ -140,7 +152,7 @@ describe('password-validator',function() {
 
       beforeEach(function() {
         schema = new Schema();
-        schema.isMin(10);
+        schema.min(10);
         valid = schema.validate('qwerty');
       });
 
@@ -153,7 +165,7 @@ describe('password-validator',function() {
 
       beforeEach(function() {
         schema = new Schema();
-        schema.isMin(10);
+        schema.min(10);
         valid = schema.validate('1234567890');
       });
 
@@ -163,7 +175,7 @@ describe('password-validator',function() {
     });
   });
 
-  describe('isMax', function() {
+  describe('max', function() {
 
     describe('the length is invalid', function() {
 
@@ -173,7 +185,7 @@ describe('password-validator',function() {
 
       it('should throw error', function(done) {
         try{
-          schema.isMax();
+          schema.max();
         } catch (err) {
           expect(err.message).to.be.equal(error.length);
           done();
@@ -185,7 +197,7 @@ describe('password-validator',function() {
 
       beforeEach(function() {
         schema = new Schema();
-        schema.isMax(10);
+        schema.max(10);
         valid = schema.validate('1234567890qwerty');
       });
 
@@ -198,7 +210,7 @@ describe('password-validator',function() {
 
       beforeEach(function() {
         schema = new Schema();
-        schema.isMax(10);
+        schema.max(10);
         valid = schema.validate('1234567890');
       });
 
