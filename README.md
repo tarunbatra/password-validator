@@ -16,12 +16,13 @@ var schema = new passwordValidator();
 
 // Add properties to it
 schema
-.isMin(8)           // Minimum length 8
-.isMax(100)         // Maximum length 100
-.has().uppercase()  // Must have uppercase letters
-.has().lowercase()  // Must have lowercase letters
-.has().digits()     // Must have digits
-.not().spaces();    // Should not have spaces
+.is().min(8)                                    // Minimum length 8
+.is().max(100)                                  // Maximum length 100
+.has().uppercase()                              // Must have uppercase letters
+.has().lowercase()                              // Must have lowercase letters
+.has().digits()                                 // Must have digits
+.has().not().spaces();                          // Should not have spaces
+.is().not().oneOf(['Passw0rd', 'Password123'])  // Blacklist these values
 
 // Validate against a password string
 console.log(schema.validate('validPASS123'));
@@ -31,7 +32,7 @@ console.log(schema.validate('invalidPASS'));
 
 // Get a full list of rules which failed
 console.log(schema.validate('joke', { list: true }));
-// => [ 'isMin', 'uppercase', 'digits' ]
+// => [ 'min', 'uppercase', 'digits' ]
 
 ```
 
@@ -46,9 +47,11 @@ Rules supported as of now are:
 |**uppercase()** | specifies password must include uppercase letters                |
 |**symbols()**   | specifies password must include symbols                          |
 |**spaces()**    | specifies password must include spaces                           |
-|**isMin(len)**  | specifies minimum length                                         |
-|**isMax(len)**  | specifies maximum length                                         |
-|**not()**       | inverts the result of validations applied next                   |
+|**min(len)**    | specifies minimum length                                         |
+|**max(len)**    | specifies maximum length                                         |
+|**oneOf(list)** | specifies the whitelisted values                                 |
+|**not([regex])**| inverts the result of validations applied next                   |
+|**is()**        | inverts the effect of _**not()**_                                |
 |**has([regex])**| inverts the effect of _**not()**_ and applies a regex (optional) |
 
 ## Options
