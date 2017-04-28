@@ -175,4 +175,13 @@ PasswordSchema.prototype.spaces = function spaces() {
   return _register.call(this, 'spaces', arguments);
 };
 
+/**
+ * Rule to whitelist words to be used as
+ *
+ * @param {array} list - list of values allowed
+ */
+PasswordSchema.prototype.oneOf = function oneOf() {
+  return _register.call(this, 'oneOf', arguments);
+};
+
 module.exports = PasswordSchema;

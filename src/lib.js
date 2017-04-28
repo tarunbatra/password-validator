@@ -97,5 +97,14 @@ module.exports = {
    */
   spaces: function spaces() {
     return _process.call(this, regex.spaces);
+  },
+
+  /**
+   * Method to provide pre-defined values for password
+   *
+   * @param {array} list - list of values allowed
+   */
+  oneOf: function oneOf(list) {
+    return list.indexOf(this.password) >= 0 === this.positive;
   }
 };
