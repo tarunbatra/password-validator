@@ -88,14 +88,33 @@ describe('password-validator',function() {
 
   describe('not',function() {
 
-    beforeEach(function() {
-      schema = new Schema();
-      schema.not();
-      valid = schema.validate('qwerty');
+    describe('called without params', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+        schema.not();
+        valid = schema.validate('something');
+      });
+
+      it('should set positive as false', function() {
+        expect(schema.positive).to.be.false;
+      });
     });
 
-    it('should set positive as false', function() {
-      expect(schema.positive).to.be.false;
+    describe('called with params', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+        schema.not('t{5,}');
+        valid = schema.validate('qwerty');
+      });
+
+      it('should set positive as false', function() {
+        expect(schema.positive).to.be.false;
+      });
+      it('should apply the param as regex', function() {
+        expect(valid).to.be.true;
+      })
     });
   });
 
