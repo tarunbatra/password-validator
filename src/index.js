@@ -105,10 +105,19 @@ PasswordSchema.prototype.not = function not() {
 /**
  * Rule to invert the effects of 'not'
  * Apart from that, 'has' is also used
- * for decoratvie purposes
+ * to make the api readable and chainable
  */
 PasswordSchema.prototype.has = function has() {
   return _register.call(this, 'has', arguments);
+};
+
+/**
+ * Rule to invert the effects of 'not'
+ * Apart from that, 'is' is also used
+ * to make the api readable and chainable
+ */
+PasswordSchema.prototype.is = function is() {
+  return _register.call(this, 'is', arguments);
 };
 
 /**
@@ -116,9 +125,9 @@ PasswordSchema.prototype.has = function has() {
  *
  * @param {number} num - minimum length
  */
-PasswordSchema.prototype.isMin = function (num) {
+PasswordSchema.prototype.min = function min(num) {
   _validateLength(num);
-  return _register.call(this, 'isMin', arguments);
+  return _register.call(this, 'min', arguments);
 };
 
 /**
@@ -126,9 +135,9 @@ PasswordSchema.prototype.isMin = function (num) {
  *
  * @param {number} num - maximum length
  */
-PasswordSchema.prototype.isMax = function (num) {
+PasswordSchema.prototype.max = function max(num) {
   _validateLength(num);
-  return _register.call(this, 'isMax', arguments);
+  return _register.call(this, 'max', arguments);
 };
 
 /**

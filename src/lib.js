@@ -40,11 +40,21 @@ module.exports = {
   },
 
   /**
+   * Method to invert the effects of not() and
+   * to make the api readable and chainable
+   *
+   */
+  is: function is() {
+    this.positive = true;
+    return true;
+  },
+
+  /**
    * Method to specify a minimum length
    *
    * @param {number} num - minimum length
    */
-  isMin: function isMin(num) {
+  min: function min(num) {
     return this.password.length >= num;
   },
 
@@ -53,7 +63,7 @@ module.exports = {
    *
    * @param {number} num - maximum length
    */
-  isMax: function isMax(num) {
+  max: function max(num) {
     return this.password.length <= num;
   },
 
