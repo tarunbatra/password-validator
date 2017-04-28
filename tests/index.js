@@ -381,4 +381,33 @@ describe('password-validator',function() {
       });
     });
   });
+
+  describe('oneOf', function() {
+
+    describe('the password fails the valdiation', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+        schema.oneOf(['this']);
+        valid = schema.validate('1234lower');
+      });
+
+      it('should return false on validation', function() {
+        expect(valid).to.be.false;
+      });
+    });
+
+    describe('the password clears the valdiation', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+        schema.oneOf('this');
+        valid = schema.validate('this');
+      });
+
+      it('should return true on validation', function() {
+        expect(valid).to.be.true;
+      });
+    });
+  });
 });
