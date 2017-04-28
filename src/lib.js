@@ -15,16 +15,21 @@ module.exports = {
 
   /**
    * Method to invert the next validations
+   *
+   * @param {RegExp} [symbol] - custom Regex which should not be present
    */
-  not: function not() {
+  not: function not(symbol) {
     this.positive = false;
+    if (symbol) {
+      return _process.call(this, symbol);
+    }
     return true;
   },
 
   /**
    * Method to invert the effects of not()
    *
-   * @param {RegExp} symbol - characters which should not be present
+   * @param {RegExp} [symbol] - custom Regex which should be present
    */
   has: function has(symbol) {
     this.positive = true;
