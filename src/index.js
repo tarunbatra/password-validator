@@ -43,7 +43,7 @@ function _register(func, args) {
  *
  * @constructor
  */
-function PasswordSchema() {
+function PasswordValidator() {
   // Initialize a schema with no properties defined
   this.properties = [];
 }
@@ -60,7 +60,7 @@ function PasswordSchema() {
  *           is not set. Otherwise, it returns an array of
  *           property names which failed validations
  */
-PasswordSchema.prototype.validate = function (pwd, options) {
+PasswordValidator.prototype.validate = function (pwd, options) {
   // Checks if pwd is invalid
   if (!pwd || typeof pwd !== 'string') {
     throw new Error(error.password);
@@ -98,7 +98,7 @@ PasswordSchema.prototype.validate = function (pwd, options) {
  * All the rules applied after 'not' will have opposite effect,
  * until 'has' rule is applied
  */
-PasswordSchema.prototype.not = function not() {
+PasswordValidator.prototype.not = function not() {
   return _register.call(this, 'not', arguments);
 };
 
@@ -107,7 +107,7 @@ PasswordSchema.prototype.not = function not() {
  * Apart from that, 'has' is also used
  * to make the api readable and chainable
  */
-PasswordSchema.prototype.has = function has() {
+PasswordValidator.prototype.has = function has() {
   return _register.call(this, 'has', arguments);
 };
 
@@ -116,7 +116,7 @@ PasswordSchema.prototype.has = function has() {
  * Apart from that, 'is' is also used
  * to make the api readable and chainable
  */
-PasswordSchema.prototype.is = function is() {
+PasswordValidator.prototype.is = function is() {
   return _register.call(this, 'is', arguments);
 };
 
@@ -125,7 +125,7 @@ PasswordSchema.prototype.is = function is() {
  *
  * @param {number} num - minimum length
  */
-PasswordSchema.prototype.min = function min(num) {
+PasswordValidator.prototype.min = function min(num) {
   _validateLength(num);
   return _register.call(this, 'min', arguments);
 };
@@ -135,7 +135,7 @@ PasswordSchema.prototype.min = function min(num) {
  *
  * @param {number} num - maximum length
  */
-PasswordSchema.prototype.max = function max(num) {
+PasswordValidator.prototype.max = function max(num) {
   _validateLength(num);
   return _register.call(this, 'max', arguments);
 };
@@ -143,35 +143,35 @@ PasswordSchema.prototype.max = function max(num) {
 /**
  * Rule to mendate the presense of digits in the password
  */
-PasswordSchema.prototype.digits = function digits() {
+PasswordValidator.prototype.digits = function digits() {
   return _register.call(this, 'digits', arguments);
 };
 
 /**
  * Rule to mendate the presense of letters in the password
  */
-PasswordSchema.prototype.letters = function letters() {
+PasswordValidator.prototype.letters = function letters() {
   return _register.call(this, 'letters', arguments);
 };
 
 /**
  * Rule to mendate the presense of uppercase letters in the password
  */
-PasswordSchema.prototype.uppercase = function uppercase() {
+PasswordValidator.prototype.uppercase = function uppercase() {
   return _register.call(this, 'uppercase', arguments);
 };
 
 /**
  * Rule to mendate the presense of lowercase letters in the password
  */
-PasswordSchema.prototype.lowercase = function lowercase() {
+PasswordValidator.prototype.lowercase = function lowercase() {
   return _register.call(this, 'lowercase', arguments);
 };
 
 /**
  * Rule to mendate the presense of symbols in the password
  */
-PasswordSchema.prototype.symbols = function symbols() {
+PasswordValidator.prototype.symbols = function symbols() {
   return _register.call(this, 'symbols', arguments);
 };
 
@@ -180,17 +180,17 @@ PasswordSchema.prototype.symbols = function symbols() {
  * It can be used along with 'not' to not allow spaces
  * in the password
  */
-PasswordSchema.prototype.spaces = function spaces() {
+PasswordValidator.prototype.spaces = function spaces() {
   return _register.call(this, 'spaces', arguments);
 };
 
 /**
- * Rule to whitelist words to be used as
+ * Rule to whitelist words to be used as password
  *
  * @param {array} list - list of values allowed
  */
-PasswordSchema.prototype.oneOf = function oneOf() {
+PasswordValidator.prototype.oneOf = function oneOf() {
   return _register.call(this, 'oneOf', arguments);
 };
 
-module.exports = PasswordSchema;
+module.exports = PasswordValidator;
