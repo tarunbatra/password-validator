@@ -1,6 +1,6 @@
 {
   "name": "password-validator",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Validates password according to flexible and intuitive specifications",
   "main": "src/index.js",
   "scripts": {
