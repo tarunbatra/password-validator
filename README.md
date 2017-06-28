@@ -59,8 +59,9 @@ The following options can be passed to `validate` method:
 * `list` - If set, validate method returns a list of rules which failed instead of true/false.
 
 ## Resources
-* [API Reference - v3.0.0 (latest)](https://tarunbatra.github.io/password-validator)
-* [API Reference - v2.2.0](https://tarunbatra.github.io/password-validator/2.2.0)
+* API Reference
+  - [latest](https://tarunbatra.github.io/password-validator)
+  - [others](https://github.com/tarunbatra/password-validator/wiki/API-Reference)
 * [Wiki](https://github.com/tarunbatra/password-validator/wiki)
 * [Changelog](https://github.com/tarunbatra/password-validator/blob/master/CHANGELOG.md)
 
