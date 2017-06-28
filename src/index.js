@@ -62,7 +62,7 @@ function PasswordValidator() {
  */
 PasswordValidator.prototype.validate = function (pwd, options) {
   // Checks if pwd is invalid
-  if (!pwd || typeof pwd !== 'string') {
+  if (typeof pwd !== 'string') {
     throw new Error(error.password);
   }
 
