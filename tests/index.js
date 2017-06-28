@@ -36,6 +36,17 @@ describe('password-validator',function() {
       });
     });
 
+    describe('the password is empty string', function() {
+
+      beforeEach(function() {
+        schema.has('');
+      });
+
+      it('should return result of validation', function() {
+        expect(schema.validate('')).to.be.true;
+      });
+    });
+
     describe('options', function() {
       beforeEach(function() {
         schema.has('p').min(8);
