@@ -64,7 +64,7 @@ export default class PasswordValidator {
    *           is not set. Otherwise, it returns an array of
    *           property names which failed validations
    */
-  validate(pwd: string, options?) {
+  validate(pwd: string, list = false) {
     // Checks if pwd is invalid
     if (typeof pwd !== 'string') {
       throw new Error(error.password);
@@ -77,7 +77,7 @@ export default class PasswordValidator {
     this.positive = true;
 
 
-    if (options && options.list === true) {
+    if (list === true) {
       return this.properties.reduce((errorList, property) => {
         // Applies all validations defined in lib one by one
         if (!_isPasswordValidFor(this, property)) {
