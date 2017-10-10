@@ -4,10 +4,11 @@
   "description": "Validates password according to flexible and intuitive specifications",
   "main": "src/index.js",
   "scripts": {
-    "docs": "node_modules/.bin/jsdoc ./src/*.js ./package.json -t ./node_modules/docdash -R README.md -d ./docs -r",
-    "lint": "eslint ./src",
+    "docs": "node_modules/.bin/typedoc ./src/*.ts --theme ./node_modules/docdash --readme README.md --out ./docs --module commonjs",
+    "lint": "tslint ./src",
     "test:unit": "./node_modules/.bin/mocha -r ts-node/register tests/**/*.ts --timeout 15000",
     "test": "npm run lint && npm run test:unit",
+    "build": "./node_modules/.bin/tsc",
     "start": "node index.js"
   },
   "keywords": [
@@ -42,6 +43,7 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "tslint-config-standard": "^6.0.1",
+    "typedoc": "^0.9.0",
     "typescript": "^2.5.3"
   }
 }

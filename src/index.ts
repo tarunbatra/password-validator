@@ -32,7 +32,7 @@ export function _isPasswordValidFor(context: PasswordValidator, property: Proper
  *
  * @constructor
  */
-export class PasswordValidator {
+export default class PasswordValidator {
   // Initialize a schema with no properties defined
   properties: Property[] = [];
   password: string;
