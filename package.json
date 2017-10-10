@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "node_modules/.bin/jsdoc ./src/*.js ./package.json -t ./node_modules/docdash -R README.md -d ./docs -r",
     "lint": "eslint ./src",
-    "test:unit": "mocha tests/*.js",
+    "test:unit": "./node_modules/.bin/mocha -r ts-node/register tests/**/*.ts --timeout 15000",
     "test": "npm run lint && npm run test:unit",
     "start": "node index.js"
   },
@@ -31,10 +31,17 @@
   "homepage": "https://github.com/tarunbatra/password-validator#readme",
   "dependencies": {},
   "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.34",
     "chai": "^3.5.0",
     "docdash": "^0.4.0",
     "eslint": "^1.10.3",
     "jsdoc": "^3.4.3",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.5.3"
   }
 }

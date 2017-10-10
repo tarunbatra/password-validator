@@ -1,20 +1,20 @@
-expect = require('chai').expect;
-var error = require('../src/constants').error;
-var Schema = require('../src/index');
+import { expect } from 'chai';
+import { error } from '../src/constants';
+import { _isPasswordValidFor, PasswordValidator as Schema } from '../src/index';
 
-describe('password-validator',function() {
+describe('password-validator', () => {
   var schema;
   var valid;
 
-  describe('validate', function() {
+  describe('validate', () => {
 
-    beforeEach(function() {
+    beforeEach(() => {
       schema = new Schema();
     });
 
-    describe('the parameter is invalid', function() {
+    describe('the parameter is invalid', () => {
 
-      it('should throw error', function(done) {
+      it('should throw error', (done) => {
         try {
           valid = schema.validate();
         } catch (err) {
@@ -24,36 +24,36 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the parameter is valid', function() {
+    describe('the parameter is valid', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema.has('p');
       });
 
-      it('should return result of validation', function() {
+      it('should return result of validation', () => {
         expect(schema.validate('top')).to.be.true;
         expect(schema.validate('tod')).to.be.false;
       });
     });
 
-    describe('the password is empty string', function() {
+    describe('the password is empty string', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema.has('');
       });
 
-      it('should return result of validation', function() {
+      it('should return result of validation', () => {
         expect(schema.validate('')).to.be.true;
       });
     });
 
-    describe('options', function() {
-      beforeEach(function() {
+    describe('options', () => {
+      beforeEach(() => {
         schema.has('p').min(8);
       });
-      describe('list option is set', function () {
+      describe('list option is set', () => {
 
-        it('should return array of validation failures', function() {
+        it('should return array of validation failures', () => {
           expect(schema.validate('topclass', { list: true }) instanceof Array).to.be.true;
           expect(schema.validate('topclass', { list: true })[0]).to.be.undefined;
           expect(schema.validate('todclass', { list: true }) instanceof Array).to.be.true;
@@ -65,92 +65,92 @@ describe('password-validator',function() {
     });
   });
 
-  describe('has', function() {
+  describe('has', () => {
 
-    describe('called without params', function() {
+    describe('called without params', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.has();
         valid = schema.validate('something');
       });
 
-      it('should set positive as true', function() {
+      it('should set positive as true', () => {
         expect(schema.positive).to.be.true;
       });
     });
 
-    describe('called with params', function() {
+    describe('called with params', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.has('t{5,}');
         valid = schema.validate('qwerty');
       });
 
-      it('should set positive as true', function() {
+      it('should set positive as true', () => {
         expect(schema.positive).to.be.true;
       });
-      it('should apply the param as regex', function() {
+      it('should apply the param as regex', () => {
         expect(valid).to.be.false;
       })
     });
   });
 
-  describe('is', function() {
-    beforeEach(function() {
+  describe('is', () => {
+    beforeEach(() => {
       schema = new Schema();
       schema.is();
       valid = schema.validate('something');
     });
 
-    it('should set positive as true', function() {
+    it('should set positive as true', () => {
       expect(schema.positive).to.be.true;
     });
   });
 
-  describe('not',function() {
+  describe('not', () => {
 
-    describe('called without params', function() {
+    describe('called without params', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.not();
         valid = schema.validate('something');
       });
 
-      it('should set positive as false', function() {
+      it('should set positive as false', () => {
         expect(schema.positive).to.be.false;
       });
     });
 
-    describe('called with params', function() {
+    describe('called with params', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.not('t{5,}');
         valid = schema.validate('qwerty');
       });
 
-      it('should set positive as false', function() {
+      it('should set positive as false', () => {
         expect(schema.positive).to.be.false;
       });
-      it('should apply the param as regex', function() {
+      it('should apply the param as regex', () => {
         expect(valid).to.be.true;
       })
     });
   });
 
-  describe('min', function() {
+  describe('min', () => {
 
-    describe('the length is invalid', function() {
+    describe('the length is invalid', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
       });
 
-      it('should throw error', function(done) {
-        try{
+      it('should throw error', (done) => {
+        try {
           schema.min();
         } catch (err) {
           expect(err.message).to.be.equal(error.length);
@@ -159,43 +159,43 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.min(10);
         valid = schema.validate('qwerty');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.min(10);
         valid = schema.validate('1234567890');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('max', function() {
+  describe('max', () => {
 
-    describe('the length is invalid', function() {
+    describe('the length is invalid', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
       });
 
-      it('should throw error', function(done) {
-        try{
+      it('should throw error', (done) => {
+        try {
           schema.max();
         } catch (err) {
           expect(err.message).to.be.equal(error.length);
@@ -204,231 +204,231 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.max(10);
         valid = schema.validate('1234567890qwerty');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.max(10);
         valid = schema.validate('1234567890');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('digits', function() {
+  describe('digits', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.digits();
         valid = schema.validate('qwerty');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.digits();
         valid = schema.validate('1234567890');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('letters', function() {
+  describe('letters', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.letters();
         valid = schema.validate('1234');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.letters();
         valid = schema.validate('letters');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('lowercase', function() {
+  describe('lowercase', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.lowercase();
         valid = schema.validate('1234CAPS');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.lowercase();
         valid = schema.validate('lettersCAPS');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('uppercase', function() {
+  describe('uppercase', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.uppercase();
         valid = schema.validate('1234lower');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.uppercase();
         valid = schema.validate('lettersCAPS');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('symbols', function() {
+  describe('symbols', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.symbols();
         valid = schema.validate('1234lower');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.symbols();
         valid = schema.validate('letters&CAPS');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('space', function() {
+  describe('space', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.spaces();
         valid = schema.validate('1234lower');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.spaces();
         valid = schema.validate('letters &CAPS');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
   });
 
-  describe('oneOf', function() {
+  describe('oneOf', () => {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.oneOf(['this']);
         valid = schema.validate('1234lower');
       });
 
-      it('should return false on validation', function() {
+      it('should return false on validation', () => {
         expect(valid).to.be.false;
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the valdiation', () => {
 
-      beforeEach(function() {
+      beforeEach(() => {
         schema = new Schema();
         schema.oneOf('this');
         valid = schema.validate('this');
       });
 
-      it('should return true on validation', function() {
+      it('should return true on validation', () => {
         expect(valid).to.be.true;
       });
     });
