@@ -3,6 +3,7 @@
   "version": "4.0.0",
   "description": "Validates password according to flexible and intuitive specifications",
   "main": "src/index.js",
+  "declarations": "src/index.d.ts",
   "scripts": {
     "docs": "node_modules/.bin/jsdoc ./src/*.js ./package.json -t ./node_modules/docdash -R README.md -d ./docs -r",
     "lint": "eslint ./src",
