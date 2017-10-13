@@ -3,7 +3,7 @@ export interface Property {
     arguments: string[];
 }
 
-export declare class PasswordValidator {
+export declare default class PasswordValidator {
 
     properties: Property[];
 
