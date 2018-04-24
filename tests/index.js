@@ -374,6 +374,19 @@ describe('password-validator',function() {
         expect(valid).to.be.true;
       });
     });
+
+    describe('currency symbols other than dollar are used', function() {
+
+      beforeEach(function() {
+        schema = new Schema();
+        schema.symbols();
+        valid = schema.validate('letters₤CAPS');
+      });
+
+      it('should return true on validation', function() {
+        expect(valid).to.be.true;
+      });
+    });
   });
 
   describe('space', function() {

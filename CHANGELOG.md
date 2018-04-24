@@ -3,6 +3,9 @@ This changelog document tracks the changes in the project API since `v2.1.2`.
 
 This project adheres to [semver](http://semver.org/).
 
+## [4.1.0](https://github.com/tarunbatra/password-validator/releases/tag/v4.1.0)
+* Allowed currency symbols other than dollar in [#16](https://github.com/tarunbatra/password-validator/pull/16)
+
 ## [4.0.0](https://github.com/tarunbatra/password-validator/releases/tag/v4.0.0)
 * Allowed empty strings as passwords in [#9](https://github.com/tarunbatra/password-validator/pull/9)
 
