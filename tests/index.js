@@ -380,7 +380,7 @@ describe('password-validator',function() {
       beforeEach(function() {
         schema = new Schema();
         schema.symbols();
-        valid = schema.validate('letters₤CAPS');
+        valid = schema.validate('letters£CAPS');
       });
 
       it('should return true on validation', function() {
