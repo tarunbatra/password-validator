@@ -159,7 +159,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -172,7 +172,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -204,7 +204,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -217,7 +217,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -233,7 +233,7 @@ describe('password-validator',function() {
 
   describe('digits', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -246,7 +246,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -262,7 +262,7 @@ describe('password-validator',function() {
 
   describe('letters', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -275,7 +275,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -291,7 +291,7 @@ describe('password-validator',function() {
 
   describe('lowercase', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -304,7 +304,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -320,7 +320,7 @@ describe('password-validator',function() {
 
   describe('uppercase', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -333,7 +333,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -349,7 +349,7 @@ describe('password-validator',function() {
 
   describe('symbols', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -362,7 +362,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -391,7 +391,7 @@ describe('password-validator',function() {
 
   describe('space', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -404,7 +404,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -420,7 +420,7 @@ describe('password-validator',function() {
 
   describe('oneOf', function() {
 
-    describe('the password fails the valdiation', function() {
+    describe('the password fails the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
@@ -433,7 +433,7 @@ describe('password-validator',function() {
       });
     });
 
-    describe('the password clears the valdiation', function() {
+    describe('the password clears the validation', function() {
 
       beforeEach(function() {
         schema = new Schema();
