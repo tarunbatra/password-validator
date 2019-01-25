@@ -68,42 +68,42 @@ module.exports = {
   },
 
   /**
-   * Method to validate the presense of digits
+   * Method to validate the presence of digits
    */
   digits: function digits() {
     return _process.call(this, regex.digits);
   },
 
   /**
-   * Method to validate the presense of letters
+   * Method to validate the presence of letters
    */
   letters: function letters() {
     return _process.call(this, regex.letters);
   },
 
   /**
-   * Method to validate the presense of uppercase letters
+   * Method to validate the presence of uppercase letters
    */
   uppercase: function uppercase() {
     return _process.call(this, regex.uppercase);
   },
 
   /**
-   * Method to validate the presense of lowercase letters
+   * Method to validate the presence of lowercase letters
    */
   lowercase: function lowercase() {
     return _process.call(this, regex.lowercase);
   },
 
   /**
-   * Method to validate the presense of symbols
+   * Method to validate the presence of symbols
    */
   symbols: function symbols() {
     return _process.call(this, regex.symbols);
   },
 
   /**
-   * Method to validate the presense of space
+   * Method to validate the presence of space
    */
   spaces: function spaces() {
     return _process.call(this, regex.spaces);

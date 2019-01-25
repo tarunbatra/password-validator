@@ -141,35 +141,35 @@ PasswordValidator.prototype.max = function max(num) {
 };
 
 /**
- * Rule to mendate the presense of digits in the password
+ * Rule to mandate the presence of digits in the password
  */
 PasswordValidator.prototype.digits = function digits() {
   return _register.call(this, 'digits', arguments);
 };
 
 /**
- * Rule to mendate the presense of letters in the password
+ * Rule to mandate the presence of letters in the password
  */
 PasswordValidator.prototype.letters = function letters() {
   return _register.call(this, 'letters', arguments);
 };
 
 /**
- * Rule to mendate the presense of uppercase letters in the password
+ * Rule to mandate the presence of uppercase letters in the password
  */
 PasswordValidator.prototype.uppercase = function uppercase() {
   return _register.call(this, 'uppercase', arguments);
 };
 
 /**
- * Rule to mendate the presense of lowercase letters in the password
+ * Rule to mandate the presence of lowercase letters in the password
  */
 PasswordValidator.prototype.lowercase = function lowercase() {
   return _register.call(this, 'lowercase', arguments);
 };
 
 /**
- * Rule to mendate the presense of symbols in the password
+ * Rule to mandate the presence of symbols in the password
  */
 PasswordValidator.prototype.symbols = function symbols() {
   return _register.call(this, 'symbols', arguments);
