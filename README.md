@@ -68,11 +68,11 @@ The following options can be passed to `validate` method:
 For APIs of other older versions, head to Wiki.
 
 ## License
-[MIT License](http://choosealicense.com/licenses/mit/)
+[MIT License](https://choosealicense.com/licenses/mit/)
 
 
-[logo-image]: http://res.cloudinary.com/tbking/image/upload/v1490803400/password-validator/logo.png
-[logo-url]: http://tarunbatra.github.io/password-validator
+[logo-image]: https://res.cloudinary.com/tbking/image/upload/v1490803400/password-validator/logo.png
+[logo-url]: https://tarunbatra.github.io/password-validator
 [npm-image]: https://img.shields.io/npm/v/password-validator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/password-validator
 [travis-image]:https://img.shields.io/travis/tarunbatra/password-validator.svg?style=flat-square
