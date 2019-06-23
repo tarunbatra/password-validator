@@ -31,10 +31,10 @@
   "homepage": "https://github.com/tarunbatra/password-validator#readme",
   "dependencies": {},
   "devDependencies": {
-    "chai": "^3.5.0",
-    "docdash": "^0.4.0",
-    "eslint": "^1.10.3",
-    "jsdoc": "^3.4.3",
-    "mocha": "^2.4.5"
+    "chai": "^4.2.0",
+    "docdash": "^1.1.1",
+    "eslint": "^6.0.0",
+    "jsdoc": "^3.6.2",
+    "mocha": "^6.1.4"
   }
 }
