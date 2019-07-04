@@ -51,7 +51,7 @@ function PasswordValidator() {
 /**
  * Method to validate the password against schema
  *
- * @param {string} pwd - password to valdiate
+ * @param {string} pwd - password to validate
  * @param {object} options - optional options to configure validation
  * @param {boolean} [options.list] - asks for a list of validation
  *           failures instead of just true/false
@@ -176,7 +176,7 @@ PasswordValidator.prototype.symbols = function symbols() {
 };
 
 /**
- * Rule to mendate the presense of space in the password
+ * Rule to mandate the presence of space in the password
  * It can be used along with 'not' to not allow spaces
  * in the password
  */
