@@ -33,8 +33,8 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "docdash": "^1.1.1",
-    "eslint": "^6.0.0",
+    "eslint": "^4.19.1",
     "jsdoc": "^3.6.2",
-    "mocha": "^6.1.4"
+    "mocha": "^3.5.3"
   }
 }
