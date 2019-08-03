@@ -14,13 +14,10 @@ describe('password-validator',function() {
 
     describe('the parameter is invalid', function() {
 
-      it('should throw error', function(done) {
-        try {
-          valid = schema.validate();
-        } catch (err) {
-          expect(err.message).to.be.equal(error.password);
-          done();
-        }
+      it('should stringify it', function() {
+        valid = schema.validate();
+        expect(typeof schema.password).to.be.equal('string');
+        expect(valid).to.be.true;
       });
     });
 
