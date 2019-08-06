@@ -4,7 +4,7 @@ This changelog document tracks the changes in the project API since `v2.1.2`.
 This project adheres to [semver](https://semver.org/).
 
 ## [4.1.2](https://github.com/tarunbatra/password-validator/releases/tag/v4.1.2)
-* Support non-english lanugaes for `lowercase` and`uppercase` rules [#16](https://github.com/tarunbatra/password-validator/pull/24)
+* Support non-english lanugaes for `lowercase` and`uppercase` rules [#24](https://github.com/tarunbatra/password-validator/pull/24)
 
 ## [4.1.1](https://github.com/tarunbatra/password-validator/releases/tag/v4.1.1)
 * Allowed currency symbols other than dollar in [#16](https://github.com/tarunbatra/password-validator/pull/16) and [#17](https://github.com/tarunbatra/password-validator/pull/17)
