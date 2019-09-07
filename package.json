@@ -11,6 +11,9 @@
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node index.js"
   },
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "keywords": [
     "password",
     "validator",
