@@ -1,8 +1,9 @@
 [![logo][logo-image]][logo-url]
 
-[![build status][travis-image]][travis-url]
 [![npm version][npm-image]][npm-url]
 [![npm downloads][downloads-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![coverage status][coveralls-image]][coveralls-url]
 
 ## Install
 `npm install password-validator`
@@ -78,3 +79,5 @@ For APIs of other older versions, head to Wiki.
 [travis-image]:https://img.shields.io/travis/tarunbatra/password-validator.svg?style=flat-square
 [travis-url]:https://travis-ci.org/tarunbatra/password-validator
 [downloads-image]: https://img.shields.io/npm/dt/password-validator.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/tarunbatra/password-validator
+[coveralls-image]: https://img.shields.io/coveralls/github/tarunbatra/password-validator?style=flat-square
