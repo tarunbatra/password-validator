@@ -6,7 +6,7 @@
   "scripts": {
     "docs": "node_modules/.bin/jsdoc ./src/*.js ./package.json -t ./node_modules/docdash -R README.md -d ./docs -r",
     "lint": "eslint ./src",
-    "test:unit": "mocha tests/*.js",
+    "test:unit": "mocha tests/*.test.js",
     "test": "npm run lint && npm run test:unit",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node index.js"
