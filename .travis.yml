@@ -6,4 +6,4 @@ node_js:
 - "node"
 install: npm install
 script: npm test
-after_success: npm run coverage
+after_success: npm run codecov

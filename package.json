@@ -8,7 +8,8 @@
     "lint": "eslint ./src",
     "test:unit": "mocha tests/*.test.js",
     "test": "npm run lint && npm run test:unit",
-    "coverage": "nyc --reporter=lcovonly --reporter=text npm run test:unit && codecov",
+    "coverage": "nyc --reporter=lcovonly --reporter=text npm run test:unit",
+    "codecov": "npm run coverage && codecov",
     "start": "node index.js"
   },
   "engines": {
