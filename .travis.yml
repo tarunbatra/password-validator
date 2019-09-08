@@ -5,5 +5,4 @@ node_js:
 - "12"
 - "node"
 install: npm install
-script: npm test
-after_success: npm run coverage
+script: npm run lint && npm run coverage
