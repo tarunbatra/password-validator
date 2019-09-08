@@ -3,7 +3,7 @@
 [![npm version][npm-image]][npm-url]
 [![npm downloads][downloads-image]][npm-url]
 [![build status][travis-image]][travis-url]
-[![coverage status][coveralls-image]][coveralls-url]
+[![coverage status][codecov-image]][codecov-url]
 
 ## Install
 `npm install password-validator`
@@ -76,8 +76,8 @@ For APIs of other older versions, head to Wiki.
 [logo-url]: https://tarunbatra.github.io/password-validator
 [npm-image]: https://img.shields.io/npm/v/password-validator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/password-validator
-[travis-image]:https://img.shields.io/travis/tarunbatra/password-validator.svg?style=flat-square
+[travis-image]:https://img.shields.io/travis/tarunbatra/password-validator.svg?logo=travis&style=flat-square
 [travis-url]:https://travis-ci.org/tarunbatra/password-validator
 [downloads-image]: https://img.shields.io/npm/dt/password-validator.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/github/tarunbatra/password-validator
-[coveralls-image]: https://img.shields.io/coveralls/github/tarunbatra/password-validator?style=flat-square
+[codecov-url]: https://codecov.io/gh/tarunbatra/password-validator
+[codecov-image]: https://img.shields.io/codecov/c/gh/tarunbatra/password-validator?logo=codecov&style=flat-square
