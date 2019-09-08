@@ -6,61 +6,6 @@ describe('password-validator', function () {
   var schema;
   var valid;
 
-  describe('validate', function () {
-
-    beforeEach(function () {
-      schema = new Schema();
-    });
-
-    describe('the parameter is invalid', function () {
-
-      it('should stringify it', function () {
-        valid = schema.validate();
-        expect(typeof schema.password).to.be.equal('string');
-        expect(valid).to.be.true;
-      });
-    });
-
-    describe('the parameter is valid', function () {
-
-      beforeEach(function () {
-        schema.has('p');
-      });
-
-      it('should return result of validation', function () {
-        expect(schema.validate('top')).to.be.true;
-        expect(schema.validate('tod')).to.be.false;
-      });
-    });
-
-    describe('the password is empty string', function () {
-
-      beforeEach(function () {
-        schema.has('');
-      });
-
-      it('should return result of validation', function () {
-        expect(schema.validate('')).to.be.true;
-      });
-    });
-
-    describe('options', function () {
-      beforeEach(function () {
-        schema.has('p').min(8);
-      });
-      describe('list option is set', function () {
-
-        it('should return array of validation failures', function () {
-          expect(schema.validate('topclass', { list: true }) instanceof Array).to.be.true;
-          expect(schema.validate('topclass', { list: true })[0]).to.be.undefined;
-          expect(schema.validate('todclass', { list: true }) instanceof Array).to.be.true;
-          expect(schema.validate('tod', { list: true })[0]).to.be.equal('has');
-          expect(schema.validate('tod', { list: true })[1]).to.be.equal('min');
-          expect(schema.validate('tod', { list: true })[2]).to.be.undefined;
-        });
-      });
-    });
-  });
 
   describe('has', function () {
 
