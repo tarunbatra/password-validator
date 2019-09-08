@@ -6,9 +6,13 @@
   "scripts": {
     "docs": "node_modules/.bin/jsdoc ./src/*.js ./package.json -t ./node_modules/docdash -R README.md -d ./docs -r",
     "lint": "eslint ./src",
-    "test:unit": "mocha tests/*.js",
+    "test:unit": "mocha tests/*.test.js",
     "test": "npm run lint && npm run test:unit",
+    "coverage": "nyc --reporter=lcovonly --reporter=text npm run test:unit && codecov",
     "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   },
   "keywords": [
     "password",
@@ -32,9 +36,11 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
+    "codecov": "^3.5.0",
     "docdash": "^1.1.1",
-    "eslint": "^4.19.1",
+    "eslint": "^6.0.1",
     "jsdoc": "^3.6.2",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "nyc": "^14.1.1"
   }
 }
