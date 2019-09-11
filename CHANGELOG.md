@@ -3,6 +3,9 @@ This changelog document tracks the changes in the project API since `v2.1.2`.
 
 This project adheres to [semver](https://semver.org/).
 
+## [5.0.2](https://github.com/tarunbatra/password-validator/releases/tag/v5.0.2)
+* Fixed issue [#28](https://github.com/tarunbatra/password-validator/issues/28) where `uppercase` and `lowercase` validations did not respect `not`.
+
 ## [5.0.1](https://github.com/tarunbatra/password-validator/releases/tag/v5.0.1)
 * Used ES6 classes internally
 * Dropped support for node versions below 8
