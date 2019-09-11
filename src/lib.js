@@ -85,14 +85,14 @@ module.exports = {
    * Method to validate the presence of uppercase letters
    */
   uppercase: function uppercase() {
-    return this.password !== this.password.toLowerCase();
+    return (this.password !== this.password.toLowerCase()) === this.positive;
   },
 
   /**
    * Method to validate the presence of lowercase letters
    */
   lowercase: function lowercase() {
-    return this.password !== this.password.toUpperCase();
+    return (this.password !== this.password.toUpperCase()) === this.positive;
   },
 
   /**
