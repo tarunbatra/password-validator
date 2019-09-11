@@ -255,6 +255,24 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().digits();
+      });
+
+      it('should return false if digit is present', function () {
+        valid = schema.validate('1234567890');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if digit is not present', function () {
+        valid = schema.validate('qwerty');
+        expect(valid).to.be.true;
+      });
+    });
   });
 
   describe('letters', function () {
@@ -281,6 +299,24 @@ describe('password-validator', function () {
       });
 
       it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().letters();
+      });
+
+      it('should return false if letter is present', function () {
+        valid = schema.validate('letters');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if letter is not present', function () {
+        valid = schema.validate('1234');
         expect(valid).to.be.true;
       });
     });
@@ -313,6 +349,24 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().lowercase();
+      });
+
+      it('should return false if lowercase is present', function () {
+        valid = schema.validate('lettersCAPS');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if lowercase is not present', function () {
+        valid = schema.validate('1234CAPS');
+        expect(valid).to.be.true;
+      });
+    });
   });
 
   describe('uppercase', function () {
@@ -339,6 +393,24 @@ describe('password-validator', function () {
       });
 
       it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().uppercase();
+      });
+
+      it('should return false if uppercase is present', function () {
+        valid = schema.validate('lettersCAPS');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if uppercase is not present', function () {
+        valid = schema.validate('letters');
         expect(valid).to.be.true;
       });
     });
@@ -384,6 +456,24 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().symbols();
+      });
+
+      it('should return false if symbol is present', function () {
+        valid = schema.validate('letters&CAPS');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if symbol is not present', function () {
+        valid = schema.validate('1234lower');
+        expect(valid).to.be.true;
+      });
+    });
   });
 
   describe('space', function () {
@@ -413,6 +503,24 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().spaces();
+      });
+
+      it('should return false if space is present', function () {
+        valid = schema.validate('letters &CAPS');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if space is not present', function () {
+        valid = schema.validate('letters&CAPS');
+        expect(valid).to.be.true;
+      });
+    });
   });
 
   describe('oneOf', function () {
@@ -434,11 +542,29 @@ describe('password-validator', function () {
 
       beforeEach(function () {
         schema = new Schema();
-        schema.oneOf('this');
+        schema.oneOf([ 'this' ]);
         valid = schema.validate('this');
       });
 
       it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('used with not', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().oneOf([ 'this' ]);
+      });
+
+      it('should return false if said password is used', function () {
+        valid = schema.validate('this');
+        expect(valid).to.be.false;
+      });
+
+      it('should return true if said password is not used', function () {
+        valid = schema.validate('that');
         expect(valid).to.be.true;
       });
     });
