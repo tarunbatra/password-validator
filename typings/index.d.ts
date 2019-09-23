@@ -4,7 +4,7 @@ declare module 'password-validator' {
   }
 
   class PasswordValidator {
-    validate(password: string, options?: ValidateOptions): boolean | boolean[];
+    validate(password: string, options?: ValidateOptions): boolean | string[];
 
     letters(): this;
     digits(): this;
