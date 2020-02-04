@@ -2,7 +2,7 @@
   "name": "password-validator",
   "version": "5.0.3",
   "description": "Validates password according to flexible and intuitive specifications",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "types": "typings/index.d.ts",
   "scripts": {
     "docs": "node_modules/.bin/jsdoc ./src/*.js ./package.json -t ./node_modules/docdash -R README.md -d ./docs -r",
