@@ -5,3 +5,4 @@ docs
 .nyc_output
 coverage
 .DS_Store
+dist
