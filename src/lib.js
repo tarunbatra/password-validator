@@ -7,7 +7,11 @@
  */
 var regex = require('./constants').regex;
 
-function _process(regexp) {
+function _process(regexp, repeat) {
+  if (repeat && repeat > 1) {
+    const parsedRepeat = repeat && repeat > 1 || 1;
+    return new RegExp(regexp + '{' + parsedRepeat + ',}').test(this.password) === this.positive;
+  }
   return new RegExp(regexp).test(this.password) === this.positive;
 }
 

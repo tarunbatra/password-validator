@@ -4,9 +4,9 @@ module.exports = {
     password: 'Password should be a valid string'
   },
   regex: {
-    digits: /\d+/,
-    letters: /[a-zA-Z]+/,
-    symbols: /[`~\!@#\$%\^\&\*\(\)\-_\=\+\[\{\}\]\\\|;:'",<.>\/\?€£¥₹]+/,
-    spaces: /[\s]+/
+    digits: '(\\d.*)',
+    letters: '([a-zA-Z].*)',
+    symbols: '([`~\\!@#\\$%\\^\\&\\*\\(\\)\\-_\\=\\+\\[\\\{\\}\\]\\\\\|;:\\\'",<.>\\/\\?€£¥₹].*)',
+    spaces: '([\\s].*)'
   }
 };
