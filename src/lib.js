@@ -91,15 +91,47 @@ module.exports = {
 
   /**
    * Method to validate the presence of uppercase letters
+   *
+   * @param {number} repeat - count of required uppercase letters
    */
-  uppercase: function uppercase() {
+  uppercase: function uppercase(repeat) {
+    if (repeat && repeat > 1) {
+      let characterIndex = 0;
+      let upperCaseLetters = 0;
+
+      while ((upperCaseLetters < repeat) && (characterIndex < this.password.length)) {
+        const currentLetter = this.password.charAt(characterIndex);
+        if (currentLetter !== currentLetter.toLowerCase()) {
+          upperCaseLetters++;
+        }
+        characterIndex++;
+      }
+
+      return (upperCaseLetters === repeat) === this.positive;
+    }
     return (this.password !== this.password.toLowerCase()) === this.positive;
   },
 
   /**
    * Method to validate the presence of lowercase letters
+   *
+   * @param {number} repeat - count of required lowercase letters
    */
-  lowercase: function lowercase() {
+  lowercase: function lowercase(repeat) {
+    if (repeat && repeat > 1) {
+      let characterIndex = 0;
+      let lowerCaseLetters = 0;
+
+      while ((lowerCaseLetters < repeat) && (characterIndex < this.password.length)) {
+        const currentLetter = this.password.charAt(characterIndex);
+        if (currentLetter !== currentLetter.toUpperCase()) {
+          lowerCaseLetters++;
+        }
+        characterIndex++;
+      }
+
+      return (lowerCaseLetters === repeat) === this.positive;
+    }
     return (this.password !== this.password.toUpperCase()) === this.positive;
   },
 

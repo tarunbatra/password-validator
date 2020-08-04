@@ -389,12 +389,38 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the password fails the validation 5 lowercase letters', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.lowercase(5);
+        valid = schema.validate('1234caps');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
     describe('the password clears the validation', function () {
 
       beforeEach(function () {
         schema = new Schema();
         schema.lowercase();
         valid = schema.validate('lettersCAPS');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears the validation of 5 lowercase letters', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.lowercase(5);
+        valid = schema.validate('LeTTeRsLoWeR');
       });
 
       it('should return true on validation', function () {
@@ -436,12 +462,38 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the password fails the validation of 5 uppercase letters', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.uppercase(5);
+        valid = schema.validate('1234CAPS');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
     describe('the password clears the validation', function () {
 
       beforeEach(function () {
         schema = new Schema();
         schema.uppercase();
         valid = schema.validate('lettersCAPS');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears the validation of 5 uppercase letters', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.uppercase(5);
+        valid = schema.validate('LeTTerCapS');
       });
 
       it('should return true on validation', function () {
