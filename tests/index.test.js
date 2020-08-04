@@ -243,12 +243,38 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the password fails the validation of 3 digits', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.digits(3);
+        valid = schema.validate('q1w2erty');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
     describe('the password clears the validation', function () {
 
       beforeEach(function () {
         schema = new Schema();
         schema.digits();
         valid = schema.validate('1234567890');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears the validation of 3 digits', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.digits(3);
+        valid = schema.validate('q1w2e3rty');
       });
 
       it('should return true on validation', function () {
@@ -290,12 +316,38 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the password fails the validation of 3 letters', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters(3);
+        valid = schema.validate('1a2B34');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
     describe('the password clears the validation', function () {
 
       beforeEach(function () {
         schema = new Schema();
         schema.letters();
         valid = schema.validate('letters');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears the validation of 3 letters', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters(3);
+        valid = schema.validate('1a2b2c3');
       });
 
       it('should return true on validation', function () {
@@ -431,12 +483,38 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the password fails the validation of 3 symbols', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.symbols(3);
+        valid = schema.validate('12!34&lower');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
     describe('the password clears the validation', function () {
 
       beforeEach(function () {
         schema = new Schema();
         schema.symbols();
         valid = schema.validate('letters&CAPS');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears the validation of 3 symbols', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.symbols(3);
+        valid = schema.validate('let1t!ers&CAPS?');
       });
 
       it('should return true on validation', function () {
@@ -491,12 +569,38 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the password fails the validation of 3 spaces', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.spaces(3);
+        valid = schema.validate('12 34low er');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
     describe('the password clears the validation', function () {
 
       beforeEach(function () {
         schema = new Schema();
         schema.spaces();
         valid = schema.validate('letters &CAPS');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears the validation of 3 spaces', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.spaces(3);
+        valid = schema.validate('le tte rs &CAPS');
       });
 
       it('should return true on validation', function () {
