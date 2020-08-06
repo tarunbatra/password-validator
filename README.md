@@ -21,7 +21,7 @@ schema
 .is().max(100)                                  // Maximum length 100
 .has().uppercase()                              // Must have uppercase letters
 .has().lowercase()                              // Must have lowercase letters
-.has().digits()                                 // Must have digits
+.has().digits(2)                                // Must have at least 2 digits
 .has().not().spaces()                           // Should not have spaces
 .is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
 
@@ -40,20 +40,20 @@ console.log(schema.validate('joke', { list: true }));
 ## Rules
 Rules supported as of now are:
 
-|     Rules      |               Descriptions                                       |
-|:---------------|:-----------------------------------------------------------------|
-|**digits()**    | specifies password must include digits                           |
-|**letters()**   | specifies password must include letters                          |
-|**lowercase()** | specifies password must include lowercase letters                |
-|**uppercase()** | specifies password must include uppercase letters                |
-|**symbols()**   | specifies password must include symbols                          |
-|**spaces()**    | specifies password must include spaces                           |
-|**min(len)**    | specifies minimum length                                         |
-|**max(len)**    | specifies maximum length                                         |
-|**oneOf(list)** | specifies the whitelisted values                                 |
-|**not([regex])**| inverts the result of validations applied next                   |
-|**is()**        | inverts the effect of _**not()**_                                |
-|**has([regex])**| inverts the effect of _**not()**_ and applies a regex (optional) |
+|     Rules            |               Descriptions                                                                                                       |
+|:---------------------|:---------------------------------------------------------------------------------------------------------------------------------|
+|**digits([count])**   | specifies password must include digits (optionally provide count paramenter to specify at least n digits)                        |
+|**letters([count])**  | specifies password must include letters (optionally provide count paramenter to specify at least n letters)                      |
+|**lowercase([count])**| specifies password must include lowercase letters (optionally provide count paramenter to specify at least n lowercase letters)  |
+|**uppercase([count])**| specifies password must include uppercase letters (optionally provide count paramenter to specify at least n uppercase letters)  |
+|**symbols([count])**  | specifies password must include symbols (optionally provide count paramenter to specify at least n symbols)                      |
+|**spaces([count])**   | specifies password must include spaces (optionally provide count paramenter to specify at least n spaces)                        |
+|**min(len)**          | specifies minimum length                                                                                                         |
+|**max(len)**          | specifies maximum length                                                                                                         |
+|**oneOf(list)**       | specifies the whitelisted values                                                                                                 |
+|**not([regex])**      | inverts the result of validations applied next                                                                                   |
+|**is()**              | inverts the effect of _**not()**_                                                                                                |
+|**has([regex])**      | inverts the effect of _**not()**_ and applies a regex (optional)                                                                 |
 
 ## Options
 The following options can be passed to `validate` method:
