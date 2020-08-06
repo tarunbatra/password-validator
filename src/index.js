@@ -8,7 +8,8 @@ var error = require('./constants').error;
  * @param {number} num - Number to validate
  */
 function _validateLength(num) {
-  if (isNaN(Number(num))) {
+  const len = Number(num);
+  if (isNaN(len) || !Number.isInteger(len) || len < 1) {
     throw new Error(error.length);
   }
 }
@@ -82,22 +83,31 @@ class PasswordValidator {
 
   /**
    * Rule to mandate the presence of letters in the password
+   *
+   * @param {number} [count] - minimum number of letters required
    */
-  letters() {
+  letters(count) {
+    count && _validateLength(count);
     return _register.call(this, 'letters', arguments);
   }
 
   /**
    * Rule to mandate the presence of digits in the password
+   *
+   * @param {number} [count] - minimum number of digits required
    */
-  digits() {
+  digits(count) {
+    count && _validateLength(count);
     return _register.call(this, 'digits', arguments);
   }
 
   /**
    * Rule to mandate the presence of symbols in the password
+   *
+   * @param {number} [count] - minimum number of symbols required
    */
-  symbols() {
+  symbols(count) {
+    count && _validateLength(count);
     return _register.call(this, 'symbols', arguments);
   }
 
@@ -123,15 +133,21 @@ class PasswordValidator {
 
   /**
    * Rule to mandate the presence of lowercase letters in the password
+   *
+   * @param {number} [count] - minimum number of lowercase letters required
    */
-  lowercase() {
+  lowercase(count) {
+    count && _validateLength(count);
     return _register.call(this, 'lowercase', arguments);
   }
 
   /**
    * Rule to mandate the presence of uppercase letters in the password
+   *
+   * @param {number} [count] - minimum number of uppercase letters required
    */
-  uppercase() {
+  uppercase(count) {
+    count && _validateLength(count);
     return _register.call(this, 'uppercase', arguments);
   }
 
@@ -139,8 +155,11 @@ class PasswordValidator {
    * Rule to mandate the presence of space in the password
    * It can be used along with 'not' to not allow spaces
    * in the password
+   *
+   * @param {number} [count] - minimum number of spaces required
    */
-  spaces() {
+  spaces(count) {
+    count && _validateLength(count);
     return _register.call(this, 'spaces', arguments);
   }
 
