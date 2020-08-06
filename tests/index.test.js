@@ -136,6 +136,38 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('called with count and clear the validation', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().spaces(2);
+        valid = schema.validate('qwert y');
+      });
+
+      it('should set positive as false', function () {
+        expect(schema.positive).to.be.false;
+      });
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('called with count and fail the validation', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.not().spaces(2);
+        valid = schema.validate('q wert y');
+      });
+
+      it('should set positive as false', function () {
+        expect(schema.positive).to.be.false;
+      });
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
   });
 
   describe('min', function () {
