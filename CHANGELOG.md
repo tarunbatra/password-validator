@@ -3,6 +3,14 @@ This changelog document tracks the changes in the project API since `v2.1.2`.
 
 This project adheres to [semver](https://semver.org/).
 
+## [5.1.0](https://github.com/tarunbatra/password-validator/releases/tag/v5.1.0)
+* Added optional `count` argument to define minimum count required for attributes. See [#39](https://github.com/tarunbatra/password-validator/issues/39).
+* Added support for `§` and `±` in symbols
+* Updated dev-dependencies versions due to CVEs
+
+## [5.0.3](https://github.com/tarunbatra/password-validator/releases/tag/v5.0.3)
+* Add types
+
 ## [5.0.2](https://github.com/tarunbatra/password-validator/releases/tag/v5.0.2)
 * Fixed issue [#28](https://github.com/tarunbatra/password-validator/issues/28) where `uppercase` and `lowercase` validations did not respect `not`.
 
