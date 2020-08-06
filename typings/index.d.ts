@@ -6,17 +6,17 @@ declare module 'password-validator' {
   class PasswordValidator {
     validate(password: string, options?: ValidateOptions): boolean | string[];
 
-    letters(): this;
-    digits(): this;
-    symbols(): this
+    letters(count?: number): this;
+    digits(count?: number): this;
+    symbols(count?: number): this
 
     min(num: number): this;
     max(num: number): this;
 
-    lowercase(): this;
-    uppercase(): this;
+    lowercase(count?: number): this;
+    uppercase(count?: number): this;
 
-    spaces(): this;
+    spaces(count?: number): this;
 
     has(symbol?: RegExp): this;
     not(symbol?: RegExp): this;
