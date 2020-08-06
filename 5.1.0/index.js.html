@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>index.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PasswordValidator.html">PasswordValidator</a><ul class='methods'><li data-type='method'><a href="PasswordValidator.html#digits">digits</a></li><li data-type='method'><a href="PasswordValidator.html#has">has</a></li><li data-type='method'><a href="PasswordValidator.html#is">is</a></li><li data-type='method'><a href="PasswordValidator.html#letters">letters</a></li><li data-type='method'><a href="PasswordValidator.html#lowercase">lowercase</a></li><li data-type='method'><a href="PasswordValidator.html#max">max</a></li><li data-type='method'><a href="PasswordValidator.html#min">min</a></li><li data-type='method'><a href="PasswordValidator.html#not">not</a></li><li data-type='method'><a href="PasswordValidator.html#oneOf">oneOf</a></li><li data-type='method'><a href="PasswordValidator.html#spaces">spaces</a></li><li data-type='method'><a href="PasswordValidator.html#symbols">symbols</a></li><li data-type='method'><a href="PasswordValidator.html#uppercase">uppercase</a></li><li data-type='method'><a href="PasswordValidator.html#validate">validate</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">index.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>var lib = require('./lib');
+var error = require('./constants').error;
+
+/**
+ * Validates that a number is a valid length (positive number)
+ *
+ * @private
+ * @param {number} num - Number to validate
+ */
+function _validateLength(num) {
+  const len = Number(num);
+  if (isNaN(len) || !Number.isInteger(len) || len &lt; 1) {
+    throw new Error(error.length);
+  }
+}
+
+/**
+ * Tests a validation and return the result
+ *
+ * @private
+ * @param {string} property - Property to validate
+ * @return {boolean} Boolean value indicting the validity
+ *           of the password against the property
+ */
+function _isPasswordValidFor(property) {
+  return lib[property.method].apply(this, property.arguments);
+}
+
+/**
+ * Registers the properties of a password-validation schema object
+ *
+ * @private
+ * @param {string} func - Property name
+ * @param {array} args - arguments for the func property
+ */
+function _register(func, args) {
+  // Add property to the schema
+  this.properties.push({ method: func, arguments: args });
+  return this;
+}
+
+class PasswordValidator {
+  /**
+   * Creates a password-validator schema
+   *
+   * @constructor
+   */
+  constructor() {
+    this.properties = [];
+  }
+
+  /**
+   * Method to validate the password against schema
+   *
+   * @param {string} pwd - password to valdiate
+   * @param {object} options - optional options to configure validation
+   * @param {boolean} [options.list] - asks for a list of validation
+   *           failures instead of just true/false
+   * @return {boolean|array} Boolean value indicting the validity
+   *           of the password as per schema, if 'options.list'
+   *           is not set. Otherwise, it returns an array of
+   *           property names which failed validations
+   */
+  validate(pwd, options) {
+    this.list = Boolean(options &amp;&amp; options.list);
+    this.password = String(pwd);
+
+    this.positive = true;
+
+    if (this.list) {
+      return this.properties.reduce((errorList, property) => {
+        // Applies all validations defined in lib one by one
+        if (!_isPasswordValidFor.call(this, property)) {
+          // If the validation for a property fails,
+          // add it to the error list
+          return errorList.concat(property.method);
+        }
+        return errorList;
+      }, []);
+    }
+    return this.properties.every(_isPasswordValidFor.bind(this));
+  }
+
+  /**
+   * Rule to mandate the presence of letters in the password
+   *
+   * @param {number} [count] - minimum number of letters required
+   */
+  letters(count) {
+    count &amp;&amp; _validateLength(count);
+    return _register.call(this, 'letters', arguments);
+  }
+
+  /**
+   * Rule to mandate the presence of digits in the password
+   *
+   * @param {number} [count] - minimum number of digits required
+   */
+  digits(count) {
+    count &amp;&amp; _validateLength(count);
+    return _register.call(this, 'digits', arguments);
+  }
+
+  /**
+   * Rule to mandate the presence of symbols in the password
+   *
+   * @param {number} [count] - minimum number of symbols required
+   */
+  symbols(count) {
+    count &amp;&amp; _validateLength(count);
+    return _register.call(this, 'symbols', arguments);
+  }
+
+  /**
+   * Rule to specify a minimum length of the password
+   *
+   * @param {number} num - minimum length
+   */
+  min(num) {
+    _validateLength(num);
+    return _register.call(this, 'min', arguments);
+  }
+
+  /**
+   * Rule to specify a maximum length of the password
+   *
+   * @param {number} num - maximum length
+   */
+  max(num) {
+    _validateLength(num);
+    return _register.call(this, 'max', arguments);
+  }
+
+  /**
+   * Rule to mandate the presence of lowercase letters in the password
+   *
+   * @param {number} [count] - minimum number of lowercase letters required
+   */
+  lowercase(count) {
+    count &amp;&amp; _validateLength(count);
+    return _register.call(this, 'lowercase', arguments);
+  }
+
+  /**
+   * Rule to mandate the presence of uppercase letters in the password
+   *
+   * @param {number} [count] - minimum number of uppercase letters required
+   */
+  uppercase(count) {
+    count &amp;&amp; _validateLength(count);
+    return _register.call(this, 'uppercase', arguments);
+  }
+
+  /**
+   * Rule to mandate the presence of space in the password
+   * It can be used along with 'not' to not allow spaces
+   * in the password
+   *
+   * @param {number} [count] - minimum number of spaces required
+   */
+  spaces(count) {
+    count &amp;&amp; _validateLength(count);
+    return _register.call(this, 'spaces', arguments);
+  }
+
+  /**
+   * Rule to invert the effects of 'not'
+   * Apart from that, 'has' is also used
+   * to make the api readable and chainable
+   */
+  has() {
+    return _register.call(this, 'has', arguments);
+  }
+
+  /**
+   * Rule to invert the next applied rules.
+   * All the rules applied after 'not' will have opposite effect,
+   * until 'has' rule is applied
+   */
+  not() {
+    return _register.call(this, 'not', arguments);
+  }
+
+  /**
+   * Rule to invert the effects of 'not'
+   * Apart from that, 'is' is also used
+   * to make the api readable and chainable
+   */
+  is() {
+    return _register.call(this, 'is', arguments);
+  }
+
+  /**
+   * Rule to whitelist words to be used as password
+   *
+   * @param {array} list - list of values allowed
+   */
+  oneOf() {
+    return _register.call(this, 'oneOf', arguments);
+  }
+}
+
+module.exports = PasswordValidator;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Thu Aug 06 2020 20:34:21 GMT+0200 (Central European Summer Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
