@@ -314,6 +314,23 @@ describe('password-validator', function () {
       });
     });
 
+    describe('the count is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.digits('invalid');
+        } catch (err) {
+          expect(err.message).to.be.equal(error.length);
+          done();
+        }
+      });
+    });
+
+
     describe('used with not', function () {
 
       beforeEach(function () {
@@ -404,6 +421,22 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('the count is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.letters('invalid');
+        } catch (err) {
+          expect(err.message).to.be.equal(error.length);
+          done();
+        }
+      });
+    });
   });
 
   describe('lowercase', function () {
@@ -477,6 +510,22 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('the count is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.lowercase('invalid');
+        } catch (err) {
+          expect(err.message).to.be.equal(error.length);
+          done();
+        }
+      });
+    });
   });
 
   describe('uppercase', function () {
@@ -548,6 +597,22 @@ describe('password-validator', function () {
       it('should return true if uppercase is not present', function () {
         valid = schema.validate('letters');
         expect(valid).to.be.true;
+      });
+    });
+
+    describe('the count is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.uppercase('invalid');
+        } catch (err) {
+          expect(err.message).to.be.equal(error.length);
+          done();
+        }
       });
     });
   });
@@ -636,6 +701,22 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('the count is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.symbols('invalid');
+        } catch (err) {
+          expect(err.message).to.be.equal(error.length);
+          done();
+        }
+      });
+    });
   });
 
   describe('space', function () {
@@ -709,6 +790,23 @@ describe('password-validator', function () {
         expect(valid).to.be.true;
       });
     });
+
+    describe('the count is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.spaces('invalid');
+        } catch (err) {
+          expect(err.message).to.be.equal(error.length);
+          done();
+        }
+      });
+    });
+
   });
 
   describe('oneOf', function () {
