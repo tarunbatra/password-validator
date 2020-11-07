@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <title>password-validator</title>
+
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="PasswordValidator.html">PasswordValidator</a><ul class='methods'><li data-type='method'><a href="PasswordValidator.html#digits">digits</a></li><li data-type='method'><a href="PasswordValidator.html#has">has</a></li><li data-type='method'><a href="PasswordValidator.html#is">is</a></li><li data-type='method'><a href="PasswordValidator.html#letters">letters</a></li><li data-type='method'><a href="PasswordValidator.html#lowercase">lowercase</a></li><li data-type='method'><a href="PasswordValidator.html#max">max</a></li><li data-type='method'><a href="PasswordValidator.html#min">min</a></li><li data-type='method'><a href="PasswordValidator.html#not">not</a></li><li data-type='method'><a href="PasswordValidator.html#oneOf">oneOf</a></li><li data-type='method'><a href="PasswordValidator.html#spaces">spaces</a></li><li data-type='method'><a href="PasswordValidator.html#symbols">symbols</a></li><li data-type='method'><a href="PasswordValidator.html#uppercase">uppercase</a></li><li data-type='method'><a href="PasswordValidator.html#validate">validate</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+
+
+
+
+
+
+
+
+
+    <section class="package">
+        <h3>password-validator 5.1.1</h3>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="readme usertext">
+        <article><p><a href="https://tarunbatra.github.io/password-validator"><img src="https://res.cloudinary.com/tbking/image/upload/v1490803400/password-validator/logo.png" alt="logo"></a></p>
+<p><a href="https://www.npmjs.com/package/password-validator"><img src="https://img.shields.io/npm/v/password-validator.svg?style=flat-square" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/password-validator"><img src="https://img.shields.io/npm/dt/password-validator.svg?style=flat-square" alt="npm downloads"></a>
+<a href="https://travis-ci.org/tarunbatra/password-validator"><img src="https://img.shields.io/travis/tarunbatra/password-validator.svg?logo=travis&amp;style=flat-square" alt="build status"></a>
+<a href="https://codecov.io/gh/tarunbatra/password-validator"><img src="https://img.shields.io/codecov/c/gh/tarunbatra/password-validator?logo=codecov&amp;style=flat-square" alt="coverage status"></a></p>
+<h2>Install</h2>
+<p><code>npm install password-validator</code></p>
+<h2>Usage</h2>
+<pre class="prettyprint source lang-js"><code>var passwordValidator = require('password-validator');
+
+// Create a schema
+var schema = new passwordValidator();
+
+// Add properties to it
+schema
+.is().min(8)                                    // Minimum length 8
+.is().max(100)                                  // Maximum length 100
+.has().uppercase()                              // Must have uppercase letters
+.has().lowercase()                              // Must have lowercase letters
+.has().digits(2)                                // Must have at least 2 digits
+.has().not().spaces()                           // Should not have spaces
+.is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
+
+// Validate against a password string
+console.log(schema.validate('validPASS123'));
+// => true
+console.log(schema.validate('invalidPASS'));
+// => false
+
+// Get a full list of rules which failed
+console.log(schema.validate('joke', { list: true }));
+// => [ 'min', 'uppercase', 'digits' ]
+
+</code></pre>
+<h2>Rules</h2>
+<p>Rules supported as of now are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Rules</th>
+<th style="text-align:left">Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>digits([count])</strong></td>
+<td style="text-align:left">specifies password must include digits (optionally provide count paramenter to specify at least n digits)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>letters([count])</strong></td>
+<td style="text-align:left">specifies password must include letters (optionally provide count paramenter to specify at least n letters)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>lowercase([count])</strong></td>
+<td style="text-align:left">specifies password must include lowercase letters (optionally provide count paramenter to specify at least n lowercase letters)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>uppercase([count])</strong></td>
+<td style="text-align:left">specifies password must include uppercase letters (optionally provide count paramenter to specify at least n uppercase letters)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>symbols([count])</strong></td>
+<td style="text-align:left">specifies password must include symbols (optionally provide count paramenter to specify at least n symbols)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>spaces([count])</strong></td>
+<td style="text-align:left">specifies password must include spaces (optionally provide count paramenter to specify at least n spaces)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>min(len)</strong></td>
+<td style="text-align:left">specifies minimum length</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>max(len)</strong></td>
+<td style="text-align:left">specifies maximum length</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>oneOf(list)</strong></td>
+<td style="text-align:left">specifies the whitelisted values</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>not([regex])</strong></td>
+<td style="text-align:left">inverts the result of validations applied next</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>is()</strong></td>
+<td style="text-align:left">inverts the effect of <em><strong>not()</strong></em></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>has([regex])</strong></td>
+<td style="text-align:left">inverts the effect of <em><strong>not()</strong></em> and applies a regex (optional)</td>
+</tr>
+</tbody>
+</table>
+<h2>Options</h2>
+<p>The following options can be passed to <code>validate</code> method:</p>
+<ul>
+<li><code>list</code> - If set, validate method returns a list of rules which failed instead of true/false.</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li>API Reference
+<ul>
+<li><a href="https://tarunbatra.github.io/password-validator">latest</a></li>
+<li><a href="https://github.com/tarunbatra/password-validator/wiki/API-Reference">others</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/tarunbatra/password-validator/wiki">Wiki</a></li>
+<li><a href="https://github.com/tarunbatra/password-validator/blob/master/CHANGELOG.md">Changelog</a></li>
+</ul>
+<p>For APIs of other older versions, head to Wiki.</p>
+<h2>License</h2>
+<p><a href="https://choosealicense.com/licenses/mit/">MIT License</a></p></article>
+    </section>
+
+
+
+
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat Nov 07 2020 20:48:41 GMT+0100 (Central European Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
