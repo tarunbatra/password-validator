@@ -38,11 +38,11 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
-    "codecov": "^3.5.0",
-    "docdash": "^1.1.1",
-    "eslint": "^6.0.1",
-    "jsdoc": "^3.6.2",
-    "mocha": "^3.5.3",
-    "nyc": "^14.1.1"
+    "codecov": "^3.8.1",
+    "docdash": "^1.2.0",
+    "eslint": "^7.13.0",
+    "jsdoc": "^3.6.6",
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
   }
 }
