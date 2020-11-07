@@ -1,6 +1,6 @@
 {
   "name": "password-validator",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "Validates password according to flexible and intuitive specifications",
   "main": "src/index.js",
   "types": "typings/index.d.ts",
