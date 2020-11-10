@@ -52,7 +52,7 @@ class PasswordValidator {
   /**
    * Method to validate the password against schema
    *
-   * @param {string} pwd - password to valdiate
+   * @param {string} pwd - password to validate
    * @param {object} options - optional options to configure validation
    * @param {boolean} [options.list] - asks for a list of validation
    *           failures instead of just true/false
