@@ -59,6 +59,22 @@ Rules supported as of now are:
 The following options can be passed to `validate` method:
 * `list` - If set, validate method returns a list of rules which failed instead of true/false.
 
+## Character Support
+This package comes with a basic support for many common charsets. Eventhough it can not be fully relied upon regarding every language and sign there is. If you see something missing please consider contributing it via a pull request.
+
+Supported Letters:
+* [Basic Latin](https://www.unicode.org/charts/PDF/U0000.pdf)
+* [Latin-1 Supplement](https://www.unicode.org/charts/PDF/U0080.pdf)
+* [Latin Extended-A](https://www.unicode.org/charts/PDF/U0100.pdf)
+* [Latin Extended-B](https://www.unicode.org/charts/PDF/U0180.pdf)
+* [Latin Extended Additional](https://www.unicode.org/charts/PDF/U1E00.pdf)
+* [Greek and Coptic](https://www.unicode.org/charts/PDF/U0370.pdf)
+* [Greek Extended](https://www.unicode.org/charts/PDF/U1F00.pdf)
+* [Cyrillic](https://www.unicode.org/charts/PDF/U0400.pdf)
+* [CJK](https://www.unicode.org/charts/PDF/U4E00.pdf)
+
+
+
 ## Resources
 * API Reference
   - [latest](https://tarunbatra.github.io/password-validator)

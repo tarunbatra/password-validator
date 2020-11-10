@@ -7,12 +7,12 @@
  */
 var regex = require('./constants').regex;
 
-function _process(regexp, repeat) {
+function _process(regexp, repeat, flags) {
   if (repeat && repeat > 1) {
     const parsedRepeat = parseInt(repeat, 10);
-    return new RegExp(regexp + '{' + parsedRepeat + ',}').test(this.password) === this.positive;
+    return new RegExp(regexp + '{' + parsedRepeat + ',}', flags || '').test(this.password) === this.positive;
   }
-  return new RegExp(regexp).test(this.password) === this.positive;
+  return new RegExp(regexp, flags || '').test(this.password) === this.positive;
 }
 
 module.exports = {
@@ -86,7 +86,7 @@ module.exports = {
    * @param {number} repeat - count of required letters
    */
   letters: function letters(repeat) {
-    return _process.call(this, regex.letters, repeat);
+    return _process.call(this, regex.letters, repeat, 'u');
   },
 
   /**
