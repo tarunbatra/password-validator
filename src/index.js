@@ -1,5 +1,6 @@
 var lib = require('./lib');
 var error = require('./constants').error;
+var getValidationMessage = require('./validationMessages');
 
 /**
  * Validates that a number is a valid length (positive number)
@@ -30,12 +31,12 @@ function _isPasswordValidFor(property) {
  * Registers the properties of a password-validation schema object
  *
  * @private
- * @param {string} func - Property name
- * @param {array} args - arguments for the func property
+ * @param {string} method - Property name
+ * @param {array} arguments - arguments for the func property
  */
-function _register(func, args) {
+function _register(method, args, description) {
   // Add property to the schema
-  this.properties.push({ method: func, arguments: args });
+  this.properties.push({ method, arguments: args, description });
   return this;
 }
 
@@ -73,7 +74,18 @@ class PasswordValidator {
         if (!_isPasswordValidFor.call(this, property)) {
           // If the validation for a property fails,
           // add it to the error list
-          return errorList.concat(property.method);
+          var detail = { validation: property.method };
+          if (property.arguments && property.arguments[0]) {
+            detail.arguments = property.arguments[0];
+          }
+
+          if (!this.positive && property.method !== 'not') {
+            detail.inverted = true;
+          }
+          var description = property.arguments && property.arguments[1];
+          var validationMessage = description || getValidationMessage(property.method, detail.arguments, detail.inverted);
+          detail.message = validationMessage;
+          return errorList.concat(detail);
         }
         return errorList;
       }, []);

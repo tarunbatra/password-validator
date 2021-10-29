@@ -54,8 +54,8 @@ describe('password-validator', function () {
           expect(schema.validate('topclass', { list: true }) instanceof Array).to.be.true;
           expect(schema.validate('topclass', { list: true })[0]).to.be.undefined;
           expect(schema.validate('todclass', { list: true }) instanceof Array).to.be.true;
-          expect(schema.validate('tod', { list: true })[0]).to.be.equal('has');
-          expect(schema.validate('tod', { list: true })[1]).to.be.equal('min');
+          expect(schema.validate('tod', { list: true })[0].validation).to.be.equal('has');
+          expect(schema.validate('tod', { list: true })[1].validation).to.be.equal('min');
           expect(schema.validate('tod', { list: true })[2]).to.be.undefined;
         });
       });
