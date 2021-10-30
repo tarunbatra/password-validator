@@ -38,6 +38,7 @@ console.log(schema.validate('joke', { list: true }));
 ```
 
 ## Advanced usage
+### Details about failed validations
 Sometimes just knowing that the password validation failed or what failed is not enough and it is important too get more context. In those cases, `details` option can be used to get more details about what failed.
 
 ```js
@@ -62,24 +63,38 @@ The above code will output:
   }
 ]
 ```
+### Custom validation messages
+The validation messages can be overriden by providing a description of the validation. For example:
+```js
+schema.not().uppercase(8, 'maximum 8 chars in CAPS please')
+```
+The above validation, on failure, should return the following object:
+```js
+  {
+    validation: 'min',
+    arguments: 8,
+    inverted: true,
+    message: 'maximum 8 chars in CAPS please'
+  },
+```
 
 ## Rules
 Rules supported as of now are:
 
 |     Rules            |               Descriptions                                                                                                       |
 |:---------------------|:---------------------------------------------------------------------------------------------------------------------------------|
-|**digits([count])**   | specifies password must include digits (optionally provide count paramenter to specify at least n digits)                        |
-|**letters([count])**  | specifies password must include letters (optionally provide count paramenter to specify at least n letters)                      |
-|**lowercase([count])**| specifies password must include lowercase letters (optionally provide count paramenter to specify at least n lowercase letters)  |
-|**uppercase([count])**| specifies password must include uppercase letters (optionally provide count paramenter to specify at least n uppercase letters)  |
-|**symbols([count])**  | specifies password must include symbols (optionally provide count paramenter to specify at least n symbols)                      |
-|**spaces([count])**   | specifies password must include spaces (optionally provide count paramenter to specify at least n spaces)                        |
-|**min(len)**          | specifies minimum length                                                                                                         |
-|**max(len)**          | specifies maximum length                                                                                                         |
+|**digits([count], [description])**   | specifies password must include digits (optionally provide count paramenter to specify at least n digits)                        |
+|**letters([count], [description])**  | specifies password must include letters (optionally provide count paramenter to specify at least n letters)                      |
+|**lowercase([count], [description])**| specifies password must include lowercase letters (optionally provide count paramenter to specify at least n lowercase letters)  |
+|**uppercase([count], [description])**| specifies password must include uppercase letters (optionally provide count paramenter to specify at least n uppercase letters)  |
+|**symbols([count], [description])**  | specifies password must include symbols (optionally provide count paramenter to specify at least n symbols)                      |
+|**spaces([count], [description])**   | specifies password must include spaces (optionally provide count paramenter to specify at least n spaces)                        |
+|**min(len, [description])**          | specifies minimum length                                                                                                         |
+|**max(len, [description])**          | specifies maximum length                                                                                                         |
 |**oneOf(list)**       | specifies the whitelisted values                                                                                                 |
-|**not([regex])**      | inverts the result of validations applied next                                                                                   |
+|**not([regex], [description])**      | inverts the result of validations applied next                                                                                   |
 |**is()**              | inverts the effect of _**not()**_                                                                                                |
-|**has([regex])**      | inverts the effect of _**not()**_ and applies a regex (optional)                                                                 |
+|**has([regex], [description])**      | inverts the effect of _**not()**_ and applies a regex (optional)                                                                 |
 
 ## Options
 The following options can be passed to `validate` method:
