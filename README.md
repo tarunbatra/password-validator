@@ -37,6 +37,32 @@ console.log(schema.validate('joke', { list: true }));
 
 ```
 
+## Advanced usage
+Sometimes just knowing that the password validation failed or what failed is not enough and it is important too get more context. In those cases, `details` option can be used to get more details about what failed.
+
+```js
+console.log(schema.validate('joke', { details: true }));
+```
+The above code will output:
+```js
+[
+  {
+    validation: 'min',
+    arguments: 8,
+    message: 'The string should have a minimum length of 8 characters'
+  },
+  {
+    validation: 'uppercase',
+    message: 'The string should have a minimum of 1 uppercase letter'
+  },
+  {
+    validation: 'digits',
+    arguments: 2,
+    message: 'The string should have a minimum of 2 digits'
+  }
+]
+```
+
 ## Rules
 Rules supported as of now are:
 
