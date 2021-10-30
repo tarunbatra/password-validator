@@ -11,8 +11,8 @@ const positiveMessages = {
   uppercase: (num = 1) => `The string should have a minimum of ${num} uppercase letter${pluralify(num)}`,
   lowercase: (num = 1) => `The string should have a minimum of ${num} lowercase letter${pluralify(num)}`,
   symbols: (num = 1) => `The string should have a minimum of ${num} symbol${pluralify(num)}`,
-  spaces: (num = 1) => `The string should have a minimum of ${num} spcace${pluralify(num)}`,
-  oneOf: (list = []) => `The string should be one of ${list.slice(0, -2).join(', ')} and ${list[list.length - 1]}`,
+  spaces: (num = 1) => `The string should have a minimum of ${num} space${pluralify(num)}`,
+  oneOf: (list) => `The string should be ${list.length > 1 ? `one of ${list.slice(0, -1).join(', ')} and ` : ''}${list[list.length - 1]}`,
   has: (pattern) => `The string should have pattern '${pattern}'`,
   not: (pattern) => `The string should not have pattern '${pattern}'`
 };
@@ -25,8 +25,8 @@ const negativeMessages = {
   uppercase: (num = 0) => `The string should ${num === 0 ? 'not have' : `have a maximum of ${num}`} uppercase letter${pluralify(num)}`,
   lowercase: (num = 0) => `The string should ${num === 0 ? 'not have' : `have a maximum of ${num}`} lowercase letter${pluralify(num)}`,
   symbols: (num = 0) => `The string should ${num === 0 ? 'not have' : `have a maximum of ${num}`} symbol${pluralify(num)}`,
-  spaces: (num = 0) => `The string should ${num === 0 ? 'not have' : `have a maximum of ${num}`} spcace${pluralify(num)}`,
-  oneOf: (list = []) => `The string should not be one of ${list.slice(0, -2).join(', ')} and ${list[list.length - 1]}`,
+  spaces: (num = 0) => `The string should ${num === 0 ? 'not have' : `have a maximum of ${num}`} space${pluralify(num)}`,
+  oneOf: (list) => `The string should not be ${list.length > 1 ? `one of ${list.slice(0, -1).join(', ')} and ` : ''}${list[list.length - 1]}`,
   has: (pattern) => `The string should not have pattern '${pattern}'`,
   not: (pattern) => `The string should have pattern '${pattern}'`
 
