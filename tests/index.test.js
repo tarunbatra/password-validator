@@ -46,7 +46,7 @@ describe('password-validator', function () {
 
     describe('options', function () {
       beforeEach(function () {
-        schema.has('p').min(8);
+        schema.has('p').not().uppercase().min(8);
       });
       describe('list option is set', function () {
 
@@ -57,6 +57,19 @@ describe('password-validator', function () {
           expect(schema.validate('tod', { list: true })[0].validation).to.be.equal('has');
           expect(schema.validate('tod', { list: true })[1].validation).to.be.equal('min');
           expect(schema.validate('tod', { list: true })[2]).to.be.undefined;
+        });
+
+        it('should return correct error messages in the list', function () {
+          var res = schema.validate('TOPCLASS123ABC', { list: true });
+          expect(res).to.have.lengthOf(2);
+          expect(res[0].validation).to.be.equal('has');
+          expect(res[0].arguments).to.be.equal('p');
+          expect(res[0].message).to.be.equal('The string should have pattern \'p\'');
+          expect(res[0].inverted).to.be.undefined;
+          expect(res[1].validation).to.be.equal('uppercase');
+          expect(res[1].arguments).to.be.undefined;
+          expect(res[1].inverted).to.be.true;
+          expect(res[1].message).to.be.equal('The string should not have uppercase letters');
         });
       });
     });
