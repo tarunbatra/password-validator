@@ -54,13 +54,16 @@ describe('password-validator', function () {
           expect(schema.validate('topclass', { list: true }) instanceof Array).to.be.true;
           expect(schema.validate('topclass', { list: true })[0]).to.be.undefined;
           expect(schema.validate('todclass', { list: true }) instanceof Array).to.be.true;
-          expect(schema.validate('tod', { list: true })[0].validation).to.be.equal('has');
-          expect(schema.validate('tod', { list: true })[1].validation).to.be.equal('min');
+          expect(schema.validate('tod', { list: true })[0]).to.be.equal('has');
+          expect(schema.validate('tod', { list: true })[1]).to.be.equal('min');
           expect(schema.validate('tod', { list: true })[2]).to.be.undefined;
         });
+      });
+
+      describe('details option was set', function () {
 
         it('should return correct error messages in the list', function () {
-          var res = schema.validate('TOPCLASS123ABC', { list: true });
+          var res = schema.validate('TOPCLASS123ABC', { details: true });
           expect(res).to.have.lengthOf(2);
           expect(res[0].validation).to.be.equal('has');
           expect(res[0].arguments).to.be.equal('p');
