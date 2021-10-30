@@ -57,10 +57,12 @@ class PasswordValidator {
    * @param {object} [options] - optional options to configure validation
    * @param {boolean} [options.list] - asks for a list of validation
    *           failures instead of just true/false
+   * @param {boolean} [options.details] - asks for more details about
+   *           failed validations including arguments, and error messages
    * @return {boolean|array} Boolean value indicting the validity
-   *           of the password as per schema, if 'options.list'
-   *           is not set. Otherwise, it returns an array of
-   *           property names which failed validations
+   *           of the password as per schema, if 'options.list' or
+   *           'options.details' is not set. Otherwise, it returns an
+   *           array of property names which failed validations
    */
   validate(pwd, options) {
     this.list = Boolean(options && options.list);
@@ -104,6 +106,7 @@ class PasswordValidator {
    * Rule to mandate the presence of letters in the password
    *
    * @param {number} [count] - minimum number of letters required
+   * @param {string} [description] - description of the validation
    */
   letters(count) {
     count && _validateLength(count);
@@ -114,6 +117,7 @@ class PasswordValidator {
    * Rule to mandate the presence of digits in the password
    *
    * @param {number} [count] - minimum number of digits required
+   * @param {string} [description] - description of the validation
    */
   digits(count) {
     count && _validateLength(count);
@@ -124,6 +128,7 @@ class PasswordValidator {
    * Rule to mandate the presence of symbols in the password
    *
    * @param {number} [count] - minimum number of symbols required
+   * @param {string} [description] - description of the validation
    */
   symbols(count) {
     count && _validateLength(count);
@@ -134,6 +139,7 @@ class PasswordValidator {
    * Rule to specify a minimum length of the password
    *
    * @param {number} num - minimum length
+   * @param {string} [description] - description of the validation
    */
   min(num) {
     _validateLength(num);
@@ -144,6 +150,7 @@ class PasswordValidator {
    * Rule to specify a maximum length of the password
    *
    * @param {number} num - maximum length
+   * @param {string} [description] - description of the validation
    */
   max(num) {
     _validateLength(num);
@@ -154,6 +161,7 @@ class PasswordValidator {
    * Rule to mandate the presence of lowercase letters in the password
    *
    * @param {number} [count] - minimum number of lowercase letters required
+   * @param {string} [description] - description of the validation
    */
   lowercase(count) {
     count && _validateLength(count);
@@ -164,6 +172,8 @@ class PasswordValidator {
    * Rule to mandate the presence of uppercase letters in the password
    *
    * @param {number} [count] - minimum number of uppercase letters required
+   * @param {string} [description] - description of the validation
+
    */
   uppercase(count) {
     count && _validateLength(count);
@@ -176,6 +186,7 @@ class PasswordValidator {
    * in the password
    *
    * @param {number} [count] - minimum number of spaces required
+   * @param {string} [description] - description of the validation
    */
   spaces(count) {
     count && _validateLength(count);
@@ -186,6 +197,9 @@ class PasswordValidator {
    * Rule to invert the effects of 'not'
    * Apart from that, 'has' is also used
    * to make the api readable and chainable
+   *
+   * @param {string|RegExp} [patten] - pattern to match
+   * @param {string} [description] - description of the validation
    */
   has() {
     return _register.call(this, 'has', arguments);
@@ -195,6 +209,9 @@ class PasswordValidator {
    * Rule to invert the next applied rules.
    * All the rules applied after 'not' will have opposite effect,
    * until 'has' rule is applied
+   *
+   * @param {string|RegExp} [patten] - pattern to not match
+   * @param {string} [description] - description of the validation
    */
   not() {
     return _register.call(this, 'not', arguments);
@@ -213,6 +230,7 @@ class PasswordValidator {
    * Rule to whitelist words to be used as password
    *
    * @param {array} list - list of values allowed
+   * @param {string} [description] - description of the validation
    */
   oneOf() {
     return _register.call(this, 'oneOf', arguments);

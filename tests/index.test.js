@@ -76,6 +76,22 @@ describe('password-validator', function () {
         });
       });
     });
+
+    describe('description is provided', function () {
+      beforeEach(function () {
+        schema
+          .has('p', 'should have p')
+          .not().uppercase(null, 'no uppercase allowed')
+          .min(80, 'more than 80 chars please');
+      });
+
+      it('should return the description as validation message', function () {
+        var res = schema.validate('TOPCLASS123ABC', { details: true });
+        expect(res[0].message).to.be.equal('should have p');
+        expect(res[1].message).to.be.equal('no uppercase allowed');
+        expect(res[2].message).to.be.equal('more than 80 chars please');
+      });
+    });
   });
 
   describe('has', function () {
