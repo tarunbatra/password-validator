@@ -64,27 +64,34 @@ class PasswordValidator {
    */
   validate(pwd, options) {
     this.list = Boolean(options && options.list);
+    this.details = Boolean(options && options.details);
     this.password = String(pwd);
 
     this.positive = true;
 
-    if (this.list) {
+    if (this.list || this.details) {
       return this.properties.reduce((errorList, property) => {
         // Applies all validations defined in lib one by one
         if (!_isPasswordValidFor.call(this, property)) {
           // If the validation for a property fails,
           // add it to the error list
-          var detail = { validation: property.method };
-          if (property.arguments && property.arguments[0]) {
-            detail.arguments = property.arguments[0];
+          var detail = property.method;
+          // If the details option was provided,
+          // return a rich object including validation message
+          if (this.details) {
+            detail = { validation: property.method };
+            if (property.arguments && property.arguments[0]) {
+              detail.arguments = property.arguments[0];
+            }
+
+            if (!this.positive && property.method !== 'not') {
+              detail.inverted = true;
+            }
+            var description = property.arguments && property.arguments[1];
+            var validationMessage = description || getValidationMessage(property.method, detail.arguments, detail.inverted);
+            detail.message = validationMessage;
           }
 
-          if (!this.positive && property.method !== 'not') {
-            detail.inverted = true;
-          }
-          var description = property.arguments && property.arguments[1];
-          var validationMessage = description || getValidationMessage(property.method, detail.arguments, detail.inverted);
-          detail.message = validationMessage;
           return errorList.concat(detail);
         }
         return errorList;
