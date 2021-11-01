@@ -3,9 +3,11 @@ This changelog document tracks the changes in the project API since `v2.1.2`.
 
 This project adheres to [semver](https://semver.org/).
 
+## [5.2.1](https://github.com/tarunbatra/password-validator/releases/tag/v5.2.1)
+* Add missing types for v5.2.0
+
 ## [5.2.0](https://github.com/tarunbatra/password-validator/releases/tag/v5.2.0)
 * Add `details` option to `validate` method to return details like validation message, arguments, etc. for failed validations.
-
 
 ## [5.1.2](https://github.com/tarunbatra/password-validator/releases/tag/v5.1.2)
 * Generate correct types to fix issue [#18](https://github.com/tarunbatra/password-validator/issues/18)
