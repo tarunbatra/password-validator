@@ -15,10 +15,10 @@ declare class PasswordValidator {
      *           'options.details' is not set. Otherwise, it returns an
      *           array of property names which failed validations
      */
-    validate(pwd: string, options?: {
-        list?: boolean;
-        details?: boolean;
-    }): boolean | any[];
+    validate(pwd: string, options: { list: true, details: true }): string[];
+    validate(pwd: string, options: { list: true, details?: boolean }): string[];
+    validate(pwd: string, options: { list?: boolean, details: true }): string[];
+    validate(pwd: string, options?: { list?: boolean, details?: boolean }): boolean | string[];
     list: boolean;
     details: boolean;
     password: string;
