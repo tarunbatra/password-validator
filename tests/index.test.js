@@ -887,4 +887,49 @@ describe('password-validator', function () {
       });
     });
   });
+
+  describe('usingPlugin', function () {
+    describe('the password fails the validation', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.usingPlugin(function plugin(pwd) {
+          return pwd.startsWith('abcd')
+        });
+        valid = schema.validate('1234lower');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+    describe('the password clears the validation', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.usingPlugin(function plugin(pwd) {
+          return pwd.startsWith('1234')
+        });
+        valid = schema.validate('1234lower');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+    describe('the plugin throws error', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.usingPlugin(function plugin() {
+          throw new Error('Unexpected error')
+        });
+        valid = schema.validate('1234lower');
+      });
+
+      it('should return false on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+  })
 });

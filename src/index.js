@@ -235,6 +235,18 @@ class PasswordValidator {
   oneOf() {
     return _register.call(this, 'oneOf', arguments);
   }
+
+  /**
+   * Insert a plugin function into the validation chain
+   *
+   * @param {function} plugin  - A plugin function
+   */
+  usingPlugin(fn) {
+    if (typeof fn !== 'function') {
+      throw new Error(error.invalidPlugin);
+    }
+    return _register.call(this, 'usingPlugin', arguments);
+  }
 }
 
 module.exports = PasswordValidator;

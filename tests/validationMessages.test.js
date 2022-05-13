@@ -168,4 +168,23 @@ describe('validationMessages', () => {
       expect(result).to.be.equal('The string should have pattern \'18\'');
     });
   });
+  describe('usingPlugin', () => {
+    const customPlugin = () => {}
+    it('should return correct message', () => {
+      let result = validationMessages('usingPlugin', customPlugin, false);
+      expect(result).to.be.equal('The string should not violate customPlugin');
+    });
+    it('should return correct message if used with not', () => {
+      let result = validationMessages('usingPlugin', customPlugin, true);
+      expect(result).to.be.equal('The string should violate customPlugin');
+    });
+    it('should return correct message if used with an anyonymous function', () => {
+      let result = validationMessages('usingPlugin', () => {}, false);
+      expect(result).to.be.equal('The string should not violate plugin');
+    });
+    it('should return correct message if used with not and an anyonymous function', () => {
+      let result = validationMessages('usingPlugin', () => {}, true);
+      expect(result).to.be.equal('The string should violate plugin');
+    });
+  });
 });

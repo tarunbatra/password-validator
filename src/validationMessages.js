@@ -14,7 +14,8 @@ const positiveMessages = {
   spaces: (num = 1) => `The string should have a minimum of ${num} space${pluralify(num)}`,
   oneOf: (list) => `The string should be ${list.length > 1 ? `one of ${list.slice(0, -1).join(', ')} and ` : ''}${list[list.length - 1]}`,
   has: (pattern) => `The string should have pattern '${pattern}'`,
-  not: (pattern) => `The string should not have pattern '${pattern}'`
+  not: (pattern) => `The string should not have pattern '${pattern}'`,
+  usingPlugin: (fn) => `The string should not violate ${fn.name || 'plugin'}`,
 };
 
 const negativeMessages = {
@@ -28,8 +29,8 @@ const negativeMessages = {
   spaces: (num = 0) => `The string should ${num === 0 ? 'not have' : `have a maximum of ${num}`} space${pluralify(num)}`,
   oneOf: (list) => `The string should not be ${list.length > 1 ? `one of ${list.slice(0, -1).join(', ')} and ` : ''}${list[list.length - 1]}`,
   has: (pattern) => `The string should not have pattern '${pattern}'`,
-  not: (pattern) => `The string should have pattern '${pattern}'`
-
+  not: (pattern) => `The string should have pattern '${pattern}'`,
+  usingPlugin: (fn) => `The string should violate ${fn.name || 'plugin'}`,
 };
 
 function pluralify(num) {
