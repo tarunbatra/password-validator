@@ -931,5 +931,20 @@ describe('password-validator', function () {
         expect(valid).to.be.false;
       });
     });
+    describe('the plugin is invalid', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+      });
+
+      it('should throw error', function (done) {
+        try {
+          schema.usingPlugin(null);
+        } catch (err) {
+          expect(err.message).to.be.equal(error.invalidPlugin);
+          done();
+        }
+      });
+    });
   })
 });
