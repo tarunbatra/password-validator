@@ -160,5 +160,19 @@ module.exports = {
    */
   oneOf: function oneOf(list) {
     return list.indexOf(this.password) >= 0 === this.positive;
+  },
+
+  /**
+   * Method to run a plugin function for password
+   *
+   * @param {function} plugin - A plugin function
+   */
+  usingPlugin: function usingPlugin(fn) {
+    try {
+      const result = fn.call({}, this.password);
+      return Boolean(result) === this.positive;
+    } catch (err) {
+      return false;
+    }
   }
 };
