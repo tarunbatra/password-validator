@@ -3,6 +3,9 @@ This changelog document tracks the changes in the project API since `v2.1.2`.
 
 This project adheres to [semver](https://semver.org/).
 
+## [5.3.0](https://github.com/tarunbatra/password-validator/releases/tag/v5.3.0)
+* Add support for [Plugins](https://github.com/tarunbatra/password-validator/#plugins)
+
 ## [5.2.1](https://github.com/tarunbatra/password-validator/releases/tag/v5.2.1)
 * Add missing types for v5.2.0
 
