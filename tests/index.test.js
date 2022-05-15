@@ -894,7 +894,7 @@ describe('password-validator', function () {
       beforeEach(function () {
         schema = new Schema();
         schema.usingPlugin(function plugin(pwd) {
-          return pwd.startsWith('abcd')
+          return pwd.startsWith('abcd');
         });
         valid = schema.validate('1234lower');
       });
@@ -908,7 +908,7 @@ describe('password-validator', function () {
       beforeEach(function () {
         schema = new Schema();
         schema.usingPlugin(function plugin(pwd) {
-          return pwd.startsWith('1234')
+          return pwd.startsWith('1234');
         });
         valid = schema.validate('1234lower');
       });
@@ -922,7 +922,7 @@ describe('password-validator', function () {
       beforeEach(function () {
         schema = new Schema();
         schema.usingPlugin(function plugin() {
-          throw new Error('Unexpected error')
+          throw new Error('Unexpected error');
         });
         valid = schema.validate('1234lower');
       });
@@ -946,5 +946,5 @@ describe('password-validator', function () {
         }
       });
     });
-  })
+  });
 });
