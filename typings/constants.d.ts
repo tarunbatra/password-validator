@@ -1,6 +1,7 @@
 export namespace error {
     const length: string;
     const password: string;
+    const invalidPlugin: string;
 }
 export namespace regex {
     const digits: string;

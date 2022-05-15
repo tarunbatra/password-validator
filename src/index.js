@@ -20,7 +20,7 @@ function _validateLength(num) {
  *
  * @private
  * @param {string} property - Property to validate
- * @return {boolean} Boolean value indicting the validity
+ * @returns {boolean} Boolean value indicting the validity
  *           of the password against the property
  */
 function _isPasswordValidFor(property) {
@@ -33,6 +33,7 @@ function _isPasswordValidFor(property) {
  * @private
  * @param {string} method - Property name
  * @param {array} arguments - arguments for the func property
+ * @returns {PasswordValidator}
  */
 function _register(method, args, description) {
   // Add property to the schema
@@ -59,7 +60,7 @@ class PasswordValidator {
    *           failures instead of just true/false
    * @param {boolean} [options.details] - asks for more details about
    *           failed validations including arguments, and error messages
-   * @return {boolean|array} Boolean value indicting the validity
+   * @returns {boolean|array} Boolean value indicting the validity
    *           of the password as per schema, if 'options.list' or
    *           'options.details' is not set. Otherwise, it returns an
    *           array of property names which failed validations
@@ -107,8 +108,9 @@ class PasswordValidator {
    *
    * @param {number} [count] - minimum number of letters required
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  letters(count) {
+  letters(count, description) {
     count && _validateLength(count);
     return _register.call(this, 'letters', arguments);
   }
@@ -118,8 +120,9 @@ class PasswordValidator {
    *
    * @param {number} [count] - minimum number of digits required
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  digits(count) {
+  digits(count, description) {
     count && _validateLength(count);
     return _register.call(this, 'digits', arguments);
   }
@@ -129,8 +132,9 @@ class PasswordValidator {
    *
    * @param {number} [count] - minimum number of symbols required
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  symbols(count) {
+  symbols(count, description) {
     count && _validateLength(count);
     return _register.call(this, 'symbols', arguments);
   }
@@ -140,8 +144,9 @@ class PasswordValidator {
    *
    * @param {number} num - minimum length
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  min(num) {
+  min(num, description) {
     _validateLength(num);
     return _register.call(this, 'min', arguments);
   }
@@ -151,8 +156,9 @@ class PasswordValidator {
    *
    * @param {number} num - maximum length
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  max(num) {
+  max(num, description) {
     _validateLength(num);
     return _register.call(this, 'max', arguments);
   }
@@ -162,8 +168,9 @@ class PasswordValidator {
    *
    * @param {number} [count] - minimum number of lowercase letters required
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  lowercase(count) {
+  lowercase(count, description) {
     count && _validateLength(count);
     return _register.call(this, 'lowercase', arguments);
   }
@@ -173,9 +180,9 @@ class PasswordValidator {
    *
    * @param {number} [count] - minimum number of uppercase letters required
    * @param {string} [description] - description of the validation
-
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  uppercase(count) {
+  uppercase(count, description) {
     count && _validateLength(count);
     return _register.call(this, 'uppercase', arguments);
   }
@@ -187,8 +194,9 @@ class PasswordValidator {
    *
    * @param {number} [count] - minimum number of spaces required
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  spaces(count) {
+  spaces(count, description) {
     count && _validateLength(count);
     return _register.call(this, 'spaces', arguments);
   }
@@ -198,10 +206,11 @@ class PasswordValidator {
    * Apart from that, 'has' is also used
    * to make the api readable and chainable
    *
-   * @param {string|RegExp} [patten] - pattern to match
+   * @param {string|RegExp} [pattern] - pattern to match
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  has() {
+  has(pattern, description) {
     return _register.call(this, 'has', arguments);
   }
 
@@ -210,10 +219,11 @@ class PasswordValidator {
    * All the rules applied after 'not' will have opposite effect,
    * until 'has' rule is applied
    *
-   * @param {string|RegExp} [patten] - pattern to not match
+   * @param {string|RegExp} [pattern] - pattern to not match
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  not() {
+  not(pattern, description) {
     return _register.call(this, 'not', arguments);
   }
 
@@ -221,6 +231,8 @@ class PasswordValidator {
    * Rule to invert the effects of 'not'
    * Apart from that, 'is' is also used
    * to make the api readable and chainable
+   *
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
   is() {
     return _register.call(this, 'is', arguments);
@@ -231,17 +243,20 @@ class PasswordValidator {
    *
    * @param {array} list - list of values allowed
    * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  oneOf() {
+  oneOf(list, description) {
     return _register.call(this, 'oneOf', arguments);
   }
 
   /**
    * Insert a plugin function into the validation chain
    *
-   * @param {function} plugin  - A plugin function
+   * @param {Plugin} fn  - A plugin function
+   * @param {string} [description] - description of the validation
+   * @returns {PasswordValidator} instance of PasswordValidator schema
    */
-  usingPlugin(fn) {
+  usingPlugin(fn, description) {
     if (typeof fn !== 'function') {
       throw new Error(error.invalidPlugin);
     }
@@ -250,3 +265,8 @@ class PasswordValidator {
 }
 
 module.exports = PasswordValidator;
+
+/**
+ * @callback Plugin
+ * @param password Password injected by the library
+ */
