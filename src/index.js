@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 var lib = require('./lib');
 var error = require('./constants').error;
 var getValidationMessage = require('./validationMessages');
