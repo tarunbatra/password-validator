@@ -78,6 +78,20 @@ The above validation, on failure, should return the following object:
   },
 ```
 
+### Plugins
+Plugin functions can be added to the password validator schema for custom password validation going beyond the rules provided here. For example:
+```js
+var validator = require('validator');
+var passwordValidator = require('password-validator');
+
+var schema = new passwordValidator()
+    .min(3, 'Password too small')
+    .usingPlugin(validator.isEmail, 'Password should be an email');
+
+schema.validate('not-an-email', { details: true })
+// [{ validation: 'usingPlugin', arguments: [Function: isEmail], message: 'Password should be an email' }]
+```
+
 ## Rules
 Rules supported as of now are:
 
@@ -91,10 +105,11 @@ Rules supported as of now are:
 |**spaces([count], [description])**   | specifies password must include spaces (optionally provide count paramenter to specify at least n spaces)                        |
 |**min(len, [description])**          | specifies minimum length                                                                                                         |
 |**max(len, [description])**          | specifies maximum length                                                                                                         |
-|**oneOf(list)**       | specifies the whitelisted values                                                                                                 |
+|**oneOf(list)**                      | specifies the whitelisted values                                                                                                 |
 |**not([regex], [description])**      | inverts the result of validations applied next                                                                                   |
-|**is()**              | inverts the effect of _**not()**_                                                                                                |
+|**is()**                             | inverts the effect of _**not()**_                                                                                                |
 |**has([regex], [description])**      | inverts the effect of _**not()**_ and applies a regex (optional)                                                                 |
+|**usingPlugin(fn, [description])**   | Executes custom function and include its result in password validation                                                           |
 
 ## Options
 The following options can be passed to `validate` method:
