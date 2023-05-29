@@ -39,7 +39,7 @@ console.log(schema.validate('joke', { list: true }));
 
 ## Advanced usage
 ### Details about failed validations
-Sometimes just knowing that the password validation failed or what failed is not enough and it is important too get more context. In those cases, `details` option can be used to get more details about what failed.
+Sometimes just knowing that the password validation failed or what failed is not enough and it is important to get more context. In those cases the `details` option can be used to get more details about what failed.
 
 ```js
 console.log(schema.validate('joke', { details: true }));
@@ -113,7 +113,7 @@ Rules supported as of now are:
 
 ## Options
 The following options can be passed to `validate` method:
-* `list` - If set, validate method returns a list of rules which failed instead of true/false.
+* `list` - If set, the validate method returns a list of rules which failed instead of true/false.
 
 ## Resources
 * API Reference
