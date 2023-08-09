@@ -469,6 +469,72 @@ describe('password-validator', function () {
         }
       });
     });
+
+    describe('the password clears for all uppercase Basic Latin', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters(26);
+        valid = schema.validate('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password clears for all lowercase Basic Latin', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters(26);
+        valid = schema.validate('abcdefghijklmnopqrstuvwxyz');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.true;
+      });
+    });
+
+    describe('the password fails for digits', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters();
+        valid = schema.validate('0123456789');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
+    describe('the password fails for symbols', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters();
+        valid = schema.validate('`~!@#$%^&*()-_=+[{}]|;:\'",<.>\/?€£¥₹§±');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
+    describe('the password fails for spaces', function () {
+
+      beforeEach(function () {
+        schema = new Schema();
+        schema.letters();
+        valid = schema.validate('   ');
+      });
+
+      it('should return true on validation', function () {
+        expect(valid).to.be.false;
+      });
+    });
+
   });
 
   describe('lowercase', function () {
