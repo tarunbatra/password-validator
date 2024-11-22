@@ -1,4 +1,16 @@
 export = PasswordValidator;
+
+interface IOptions {
+    list?: boolean;
+    details?: boolean;
+}
+
+interface IDetails {
+    validation: string;
+    arguments: any;
+    message: string;
+}
+
 declare class PasswordValidator {
     properties: any[];
     /**
@@ -15,10 +27,11 @@ declare class PasswordValidator {
      *           'options.details' is not set. Otherwise, it returns an
      *           array of property names which failed validations
      */
-    validate(pwd: string, options?: {
-        list?: boolean;
-        details?: boolean;
-    }): boolean | any[];
+    validate(pwd: string): boolean;
+    validate(pwd: string, options: IOptions & { list: true }): string[];
+    validate(pwd: string, options: IOptions & { details: true }): IDetails[];
+    validate(pwd: string, options?: IOptions): boolean | string[] | IDetails[];
+
     list: boolean;
     details: boolean;
     password: string;
