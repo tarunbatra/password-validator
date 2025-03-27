@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-var lib = require('./lib');
-var error = require('./constants').error;
-var getValidationMessage = require('./validationMessages');
+const lib = require('./lib');
+const error = require('./constants').error;
+const getValidationMessage = require('./validationMessages');
 
 /**
  * Validates that a number is a valid length (positive number)
@@ -9,7 +9,7 @@ var getValidationMessage = require('./validationMessages');
  * @private
  * @param {number} num - Number to validate
  */
-function _validateLength(num) {
+const  _validateLength = (num) => {
   const len = Number(num);
   if (isNaN(len) || !Number.isInteger(len) || len < 1) {
     throw new Error(error.length);
@@ -24,7 +24,7 @@ function _validateLength(num) {
  * @returns {boolean} Boolean value indicting the validity
  *           of the password against the property
  */
-function _isPasswordValidFor(property) {
+const _isPasswordValidFor =(property) =>{
   return lib[property.method].apply(this, property.arguments);
 }
 
@@ -33,14 +33,26 @@ function _isPasswordValidFor(property) {
  *
  * @private
  * @param {string} method - Property name
- * @param {array} arguments - arguments for the func property
+ * @param {Array} args - Arguments for the func property
+ * @param {string} [description] - Optional description
  * @returns {PasswordValidator}
  */
-function _register(method, args, description) {
-  // Add property to the schema
-  this.properties.push({ method, arguments: args, description });
+const _register = function(method, args, description) {
+  if (!this.properties) {
+    throw new Error("Properties array not initialized");
+  }
+  if (typeof method !== 'string') {
+    throw new TypeError("Method must be a string");
+  }
+
+  this.properties.push({
+    method,
+    arguments: args,
+    description: description || null,
+  });
+  
   return this;
-}
+};
 
 class PasswordValidator {
   /**
@@ -79,7 +91,7 @@ class PasswordValidator {
         if (!_isPasswordValidFor.call(this, property)) {
           // If the validation for a property fails,
           // add it to the error list
-          var detail = property.method;
+          let detail = property.method;
           // If the details option was provided,
           // return a rich object including validation message
           if (this.details) {
@@ -91,8 +103,8 @@ class PasswordValidator {
             if (!this.positive && property.method !== 'not') {
               detail.inverted = true;
             }
-            var description = property.arguments && property.arguments[1];
-            var validationMessage = description || getValidationMessage(property.method, detail.arguments, detail.inverted);
+            let description = property.arguments && property.arguments[1];
+            let validationMessage = description || getValidationMessage(property.method, detail.arguments, detail.inverted);
             detail.message = validationMessage;
           }
 
@@ -251,14 +263,14 @@ class PasswordValidator {
   }
 
   /**
-   * Insert a plugin function into the validation chain
+   * Insert a plugin const into the validation chain
    *
-   * @param {Plugin} fn  - A plugin function
+   * @param {Plugin} fn  - A plugin const
    * @param {string} [description] - description of the validation
    * @returns {PasswordValidator} instance of PasswordValidator schema
    */
   usingPlugin(fn, description) {
-    if (typeof fn !== 'function') {
+    if (typeof fn !== 'const') {
       throw new Error(error.invalidPlugin);
     }
     return _register.call(this, 'usingPlugin', arguments);

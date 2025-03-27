@@ -1,4 +1,4 @@
-module.exports = function (method, arg, inverted) {
+module.exports =  (method, arg, inverted) => {
   const msgList = inverted ? negativeMessages : positiveMessages;
   return msgList[method] && msgList[method](arg);
 };
@@ -33,6 +33,6 @@ const negativeMessages = {
   usingPlugin: (fn) => `The string should violate ${fn.name || 'plugin'}`,
 };
 
-function pluralify(num) {
+const pluralify = (num)=> {
   return num === 1 ? '' : 's';
 }
