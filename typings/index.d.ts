@@ -1,16 +1,4 @@
 export = PasswordValidator;
-
-interface IOptions {
-    list?: boolean;
-    details?: boolean;
-}
-
-interface IDetails {
-    validation: string;
-    arguments: any;
-    message: string;
-}
-
 declare class PasswordValidator {
     properties: any[];
     /**
@@ -22,18 +10,20 @@ declare class PasswordValidator {
      *           failures instead of just true/false
      * @param {boolean} [options.details] - asks for more details about
      *           failed validations including arguments, and error messages
+     * @param {string} [options.language] - Default en-Us - pt-Br
      * @returns {boolean|array} Boolean value indicting the validity
      *           of the password as per schema, if 'options.list' or
      *           'options.details' is not set. Otherwise, it returns an
      *           array of property names which failed validations
      */
-    validate(pwd: string): boolean;
-    validate(pwd: string, options: IOptions & { list: true }): string[];
-    validate(pwd: string, options: IOptions & { details: true }): IDetails[];
-    validate(pwd: string, options?: IOptions): boolean | string[] | IDetails[];
-
+    validate(pwd: string, options?: {
+        list?: boolean;
+        details?: boolean;
+        language?: string;
+    }): boolean | any[];
     list: boolean;
     details: boolean;
+    language: string;
     password: string;
     positive: boolean;
     /**

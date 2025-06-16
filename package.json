@@ -1,6 +1,6 @@
 {
-  "name": "password-validator",
-  "version": "5.3.0",
+  "name": "@starley/password-validator-br",
+  "version": "5.3.2",
   "description": "Validates password according to flexible and intuitive specifications",
   "main": "src/index.js",
   "types": "typings/index.d.ts",
@@ -27,16 +27,16 @@
     "check",
     "match"
   ],
-  "author": "Tarun Batra <tarun.batra00@gmail.com>",
+  "author": "Starley Cazorla <starlleycom@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tarunbatra/password-validator.git"
+    "url": "git+https://github.com/StarleyDev/password-validator-br"
   },
   "bugs": {
-    "url": "https://github.com/tarunbatra/password-validator/issues"
+    "url": "https://github.com/StarleyDev/password-validator-br/issues"
   },
-  "homepage": "https://github.com/tarunbatra/password-validator#readme",
+  "homepage": "https://github.com/StarleyDev/password-validator-br#readme",
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",

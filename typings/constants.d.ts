@@ -1,11 +1,11 @@
 export namespace error {
-    const length: string;
-    const password: string;
-    const invalidPlugin: string;
+    let length: string;
+    let password: string;
+    let invalidPlugin: string;
 }
 export namespace regex {
-    const digits: string;
-    const letters: string;
-    const symbols: string;
-    const spaces: string;
+    let digits: string;
+    let letters: string;
+    let symbols: string;
+    let spaces: string;
 }

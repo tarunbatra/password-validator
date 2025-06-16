@@ -5,12 +5,25 @@
 ![gh action build status][gh_build-url]
 [![coverage status][codecov-image]][codecov-url]
 
+## News
+Add suport language to pt-Br by Starley Cazorla 18/01/2023
+
+Add suport language to es-Ar by Starley Cazorla 19/01/2023
+
+## Original Developer and Project
+[Tarun Batra](https://github.com/tarunbatra)
+[password-validator](https://github.com/tarunbatra/password-validator)
+
 ## Install
-`npm install password-validator`
+`npm install @starley/password-validator-br`
 
 ## Usage
 ```js
 var passwordValidator = require('password-validator');
+
+or
+
+import PasswordValidator from "password-validator";
 
 // Create a schema
 var schema = new passwordValidator();
@@ -35,6 +48,10 @@ console.log(schema.validate('invalidPASS'));
 console.log(schema.validate('joke', { list: true }));
 // => [ 'min', 'uppercase', 'digits' ]
 
+// The option language must be used together with details option, to return message according to language set.
+/** Language avaliable - If is not set, English by default, pt-Br (Brazil) and es-Ar (Argentina) */
+console.log(schema.validate('joke', { details: true, language: 'pt-Br' }));
+// => [ 'message': 'A senha deve ter o tamanho minimo de 8 caracteres' ]
 ```
 
 ## Advanced usage
@@ -126,7 +143,6 @@ For APIs of other older versions, head to Wiki.
 
 ## License
 [MIT License](https://choosealicense.com/licenses/mit/)
-
 
 [logo-image]: https://res.cloudinary.com/tbking/image/upload/v1490803400/password-validator/logo.png
 [logo-url]: https://tarunbatra.github.io/password-validator
