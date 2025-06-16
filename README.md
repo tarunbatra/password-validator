@@ -12,7 +12,7 @@ Add suport language to es-Ar by Starley Cazorla 19/01/2023
 
 ## Original Developer and Project
 [Tarun Batra](https://github.com/tarunbatra)
-[password-validator](https://github.com/tarunbatra/password-validator)
+[password-validator](https://github.com/StarleyDev/password-validator-br)
 
 ## Install
 `npm install @starley/password-validator-br`
@@ -135,9 +135,9 @@ The following options can be passed to `validate` method:
 ## Resources
 * API Reference
   - [latest](https://tarunbatra.github.io/password-validator)
-  - [others](https://github.com/tarunbatra/password-validator/wiki/API-Reference)
-* [Wiki](https://github.com/tarunbatra/password-validator/wiki)
-* [Changelog](https://github.com/tarunbatra/password-validator/blob/master/CHANGELOG.md)
+  - [others](https://github.com/StarleyDev/password-validator-br/wiki/API-Reference)
+* [Wiki](https://github.com/StarleyDev/password-validator-br/wiki)
+* [Changelog](https://github.com/StarleyDev/password-validator-br/blob/master/CHANGELOG.md)
 
 For APIs of other older versions, head to Wiki.
 
@@ -149,6 +149,6 @@ For APIs of other older versions, head to Wiki.
 [npm-image]: https://img.shields.io/npm/v/password-validator.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/password-validator
 [downloads-image]: https://img.shields.io/npm/dt/password-validator.svg?style=flat-square
-[codecov-url]: https://codecov.io/gh/tarunbatra/password-validator
-[codecov-image]: https://img.shields.io/codecov/c/gh/tarunbatra/password-validator?logo=codecov&style=flat-square
-[gh_build-url]: https://img.shields.io/github/workflow/status/tarunbatra/password-validator/build-ci?style=flat-square&logo=github
+[codecov-url]: https://codecov.io/gh/StarleyDev/password-validator-br
+[codecov-image]: https://img.shields.io/codecov/c/gh/StarleyDev/password-validator-br?logo=codecov&style=flat-square
+[gh_build-url]: https://img.shields.io/github/workflow/status/StarleyDev/password-validator-br/build-ci?style=flat-square&logo=github

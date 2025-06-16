@@ -68,7 +68,7 @@ module.exports = {
    * @param {number} num - maximum length
    */
   max: function max(num) {
-    return this.password.length <= num;
+    return this.password.length === 0 ? false : this.password.length <= num;
   },
 
   /**
@@ -176,4 +176,3 @@ module.exports = {
     }
   }
 };
-
