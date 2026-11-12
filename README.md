@@ -2,7 +2,7 @@
 
 [![npm version][npm-image]][npm-url]
 [![npm downloads][downloads-image]][npm-url]
-![gh action build status][gh_build-url]
+[![gh action build status][gh_build-image]][gh_build-url]
 [![coverage status][codecov-image]][codecov-url]
 
 ## Install
@@ -135,4 +135,5 @@ For APIs of other older versions, head to Wiki.
 [downloads-image]: https://img.shields.io/npm/dt/password-validator.svg?style=flat-square
 [codecov-url]: https://codecov.io/gh/tarunbatra/password-validator
 [codecov-image]: https://img.shields.io/codecov/c/gh/tarunbatra/password-validator?logo=codecov&style=flat-square
-[gh_build-url]: https://img.shields.io/github/workflow/status/tarunbatra/password-validator/build-ci?style=flat-square&logo=github
+[gh_build-image]: https://github.com/tarunbatra/password-validator/actions/workflows/build.yml/badge.svg
+[gh_build-url]: https://github.com/tarunbatra/password-validator/actions/workflows/build.yml
