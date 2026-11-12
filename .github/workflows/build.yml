@@ -27,6 +27,9 @@ jobs:
     - name: Run tests
       run: npm test
     - name: Code coverage
+      run: npm run coverage
+    - name: Upload coverage to Codecov
+      if: matrix.node-version == 'lts/*'
       uses: codecov/codecov-action@v5
       with:
         files: ./coverage/lcov.info
